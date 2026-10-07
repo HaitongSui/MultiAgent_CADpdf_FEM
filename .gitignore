@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.pytest_cache/
+out/
+build/
+dist/
+# CalculiX / Abaqus run artefacts
+*.frd
+*.dat
+*.sta
+*.cvg
+*.12d
+spooles.out
