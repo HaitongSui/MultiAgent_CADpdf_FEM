@@ -15,6 +15,7 @@ from __future__ import annotations
 
 import math
 import re
+from typing import Callable, Optional
 
 import numpy as np
 
@@ -96,6 +97,34 @@ def transform(g: Geometry, s: float) -> Geometry:
     return Geometry(outer=tr(g.outer), holes=holes, scale_mm_per_pt=s)
 
 
+def scale_part(g: Geometry, texts: list[str], unit_mm: float, title_scale: Optional[float],
+               min_support: int = 2, rel_tol: float = 0.01,
+               log: Callable[[str, str], None] = lambda level, text: None) -> Geometry:
+    """Convert a part from PDF points to mm (origin at its lower-left corner)
+    using the title-block scale ``1:title_scale`` and/or the dimension texts."""
+    dim_s, n_dim = calibrate(texts, g, unit_mm, rel_tol)
+    title_s = PT_TO_MM * title_scale if title_scale else None
+    n_title = support(dimension_ratios(texts, g, unit_mm), title_s, rel_tol) if title_s else 0
+
+    if title_s and (n_title >= n_dim or n_dim < min_support):
+        s = title_s
+        log("INFO", f"title-block scale 1:{title_scale:g} ({n_title} dimension(s) agree)")
+    elif dim_s and n_dim >= min_support:
+        if title_s:
+            log("WARNING", f"title-block scale 1:{title_scale:g} disagrees with dimensions "
+                           f"(1:{dim_s / PT_TO_MM:.4g} from {n_dim} dims vs {n_title}) "
+                           "- using dimensions")
+        else:
+            log("INFO", f"scale 1:{dim_s / PT_TO_MM:.4g} derived from {n_dim} dimension(s)")
+        s = dim_s
+    else:
+        s = PT_TO_MM
+        log("WARNING", "no scale information - assuming 1:1 on paper")
+    if math.isclose(s, 0.0):
+        raise ValueError("degenerate scale")
+    return transform(g, s)
+
+
 class DimensionAgent(Agent):
     name = "dimension"
     requires = ("part_pt", "spec", "drawing")
@@ -105,34 +134,11 @@ class DimensionAgent(Agent):
         super().__init__(min_support=min_support, rel_tol=rel_tol)
 
     def run(self, bb: Blackboard) -> None:
-        g: Geometry = bb["part_pt"]
         spec = bb["spec"]
-        drawing = bb["drawing"]
-        unit_mm = UNIT_TO_MM.get(spec.units, 1.0)
-        texts = [t.text for t in drawing.lines]
-        dim_s, n_dim = calibrate(texts, g, unit_mm, self.params["rel_tol"])
-        title_s = PT_TO_MM * spec.scale if spec.scale else None
-        n_title = (support(dimension_ratios(texts, g, unit_mm), title_s, self.params["rel_tol"])
-                   if title_s else 0)
-
-        if title_s and (n_title >= n_dim or n_dim < self.params["min_support"]):
-            s = title_s
-            self.info(bb, f"title-block scale 1:{spec.scale:g} "
-                          f"({n_title} dimension(s) agree)")
-        elif dim_s and n_dim >= self.params["min_support"]:
-            if title_s:
-                self.warn(bb, f"title-block scale 1:{spec.scale:g} disagrees with dimensions "
-                              f"(1:{dim_s / PT_TO_MM:.4g} from {n_dim} dims vs {n_title}) "
-                              "- using dimensions")
-            else:
-                self.info(bb, f"scale 1:{dim_s / PT_TO_MM:.4g} derived from {n_dim} dimension(s)")
-            s = dim_s
-        else:
-            s = PT_TO_MM
-            self.warn(bb, "no scale information - assuming 1:1 on paper")
-        if math.isclose(s, 0.0):
-            raise ValueError("degenerate scale")
-        geo = transform(g, s)
+        geo = scale_part(bb["part_pt"], [t.text for t in bb["drawing"].lines],
+                         UNIT_TO_MM.get(spec.units, 1.0), spec.scale,
+                         self.params["min_support"], self.params["rel_tol"],
+                         log=lambda level, text: bb.say(self.name, text, level))
         x0, y0, x1, y1 = geo.bbox
         self.info(bb, f"part {x1 - x0:.4g} x {y1 - y0:.4g} mm, area {geo.area:.6g} mm^2, "
                       f"{len(geo.holes)} hole(s)")

@@ -76,6 +76,57 @@ def group_text_lines(words: list[TextItem], tol: float = 2.0) -> list[TextItem]:
     return lines
 
 
+def parse_page(page, page_index: int = 0, bezier_steps: int = 16) -> DrawingData:
+    """Vector strokes and words of one pdfplumber page (y-up PDF points)."""
+    H = float(page.height)
+    flip = lambda p: (float(p[0]), H - float(p[1]))  # noqa: E731  (y-down -> y-up)
+    drawing = DrawingData(page_width=float(page.width), page_height=H, page_index=page_index)
+
+    for obj in [*page.lines, *page.rects, *page.curves]:
+        if not obj.get("stroke", True):
+            continue
+        raw = obj.get("path") or [("m", obj["pts"][0])] + [("l", p) for p in obj["pts"][1:]]
+        is_rect = obj.get("object_type") == "rect"
+        for sub in _flatten_path(raw, flip, bezier_steps):
+            closed = math.dist(sub[0], sub[-1]) < 1e-6
+            if is_rect and not closed:
+                sub = sub + [sub[0]]
+                closed = True
+            st = Stroke(points=sub, linewidth=float(obj.get("linewidth") or 0.0),
+                        dashed=bool(obj.get("dash") and obj["dash"][0]),
+                        closed=closed, color=obj.get("stroking_color"))
+            if closed and len(sub) >= 12 and obj.get("object_type") == "curve":
+                c, r, res = _circle_fit(np.asarray(sub[:-1]))
+                if res < 0.01:
+                    # Bézier anchors lie exactly on the circle: refit on them
+                    anchors = np.asarray([flip(p) for p in obj.get("pts", [])])
+                    if len(anchors) >= 4:
+                        c2, r2, res2 = _circle_fit(anchors)
+                        if res2 < 1e-4 and abs(r2 - r) < 0.01 * r:
+                            c, r = c2, r2
+                    st.circle = (c, r)
+            drawing.strokes.append(st)
+
+    # CAD texts rotated 90 deg read bottom-to-top
+    for w in page.extract_words(keep_blank_chars=False, use_text_flow=False,
+                                char_dir_rotated="btt", line_dir_rotated="ltr",
+                                extra_attrs=["size"]):
+        drawing.texts.append(TextItem(w["text"], float(w["x0"]), H - float(w["bottom"]),
+                                      float(w["x1"]), H - float(w["top"]),
+                                      float(w.get("size", 0.0))))
+    drawing.lines = group_text_lines(drawing.texts)
+    return drawing
+
+
+def parse_pdf(path: str | Path, pages: list[int] | None = None,
+              bezier_steps: int = 16) -> list[DrawingData]:
+    import pdfplumber
+
+    with pdfplumber.open(Path(path)) as pdf:
+        idx = range(len(pdf.pages)) if pages is None else pages
+        return [parse_page(pdf.pages[i], i, bezier_steps) for i in idx]
+
+
 class PDFParserAgent(Agent):
     name = "pdf_parser"
     requires = ("pdf_path",)
@@ -85,50 +136,7 @@ class PDFParserAgent(Agent):
         super().__init__(page=page, bezier_steps=bezier_steps)
 
     def run(self, bb: Blackboard) -> None:
-        import pdfplumber
-
-        path = Path(bb["pdf_path"])
-        with pdfplumber.open(path) as pdf:
-            page = pdf.pages[self.params["page"]]
-            H = float(page.height)
-            flip = lambda p: (float(p[0]), H - float(p[1]))  # noqa: E731  (y-down -> y-up)
-            drawing = DrawingData(page_width=float(page.width), page_height=H,
-                                  page_index=self.params["page"])
-
-            for obj in [*page.lines, *page.rects, *page.curves]:
-                if not obj.get("stroke", True):
-                    continue
-                raw = obj.get("path") or [("m", obj["pts"][0])] + [("l", p) for p in obj["pts"][1:]]
-                is_rect = obj.get("object_type") == "rect"
-                for sub in _flatten_path(raw, flip, self.params["bezier_steps"]):
-                    closed = math.dist(sub[0], sub[-1]) < 1e-6
-                    if is_rect and not closed:
-                        sub = sub + [sub[0]]
-                        closed = True
-                    st = Stroke(points=sub, linewidth=float(obj.get("linewidth") or 0.0),
-                                dashed=bool(obj.get("dash") and obj["dash"][0]),
-                                closed=closed, color=obj.get("stroking_color"))
-                    if closed and len(sub) >= 12 and obj.get("object_type") == "curve":
-                        c, r, res = _circle_fit(np.asarray(sub[:-1]))
-                        if res < 0.01:
-                            # Bézier anchors lie exactly on the circle: refit on them
-                            anchors = np.asarray([flip(p) for p in obj.get("pts", [])])
-                            if len(anchors) >= 4:
-                                c2, r2, res2 = _circle_fit(anchors)
-                                if res2 < 1e-4 and abs(r2 - r) < 0.01 * r:
-                                    c, r = c2, r2
-                            st.circle = (c, r)
-                    drawing.strokes.append(st)
-
-            # CAD texts rotated 90 deg read bottom-to-top
-            for w in page.extract_words(keep_blank_chars=False, use_text_flow=False,
-                                        char_dir_rotated="btt", line_dir_rotated="ltr",
-                                        extra_attrs=["size"]):
-                drawing.texts.append(TextItem(w["text"], float(w["x0"]), H - float(w["bottom"]),
-                                              float(w["x1"]), H - float(w["top"]),
-                                              float(w.get("size", 0.0))))
-            drawing.lines = group_text_lines(drawing.texts)
-
+        (drawing,) = parse_pdf(bb["pdf_path"], [self.params["page"]], self.params["bezier_steps"])
         n_circ = sum(1 for s in drawing.strokes if s.circle)
         self.info(bb, f"page {drawing.page_index}: {len(drawing.strokes)} strokes "
                       f"({n_circ} circles), {len(drawing.texts)} words, {len(drawing.lines)} text lines")

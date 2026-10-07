@@ -5,4 +5,5 @@ pydantic>=2
 anthropic>=1.0      # optional: LLM annotation agent (--llm)
 matplotlib>=3.7     # optional: mesh / stress plot in report
 reportlab>=4        # optional: generate the sample drawings
+openseespy>=3.5     # optional: run the generated bridge model (OpenSees)
 pytest>=8

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "cad2fem"
 version = "0.1.0"
-description = "Multi-agent framework: vector CAD drawings (PDF) -> FEM input files"
+description = "Multi-agent framework: vector CAD drawings (PDF) -> FEM input files, incl. whole-bridge models"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -17,7 +17,9 @@ dependencies = [
 [project.optional-dependencies]
 llm = ["anthropic>=1.0", "pydantic>=2"]
 plot = ["matplotlib>=3.7"]
-dev = ["pytest>=8", "reportlab>=4", "matplotlib>=3.7", "anthropic>=1.0", "pydantic>=2"]
+bridge = ["openseespy>=3.5"]
+dev = ["pytest>=8", "reportlab>=4", "matplotlib>=3.7", "anthropic>=1.0", "pydantic>=2",
+       "openseespy>=3.5"]
 
 [project.scripts]
 cad2fem = "cad2fem.cli:main"
