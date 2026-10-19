@@ -1,0 +1,64 @@
+{
+ "task": "girder_end",
+ "sheets": [
+  "J-57 補剛桁（その1-1）"
+ ],
+ "facts": [],
+ "sections": [
+  {
+   "name": "GIRDER_END",
+   "sheet": "J-57",
+   "view": "plate call-outs + A-A",
+   "depth_mm": 3038.0,
+   "depth_range_mm": [],
+   "web_spacing_mm": 1600.0,
+   "axis_length_mm": null,
+   "plates": [
+    {
+     "role": "top",
+     "width_mm": 1700.0,
+     "thickness_mm": 30.0,
+     "count": 1,
+     "material": "SM490YB"
+    },
+    {
+     "role": "bottom",
+     "width_mm": 1700.0,
+     "thickness_mm": 32.0,
+     "count": 1,
+     "material": "SM490YB"
+    },
+    {
+     "role": "web",
+     "width_mm": 2976.0,
+     "thickness_mm": 18.0,
+     "count": 2,
+     "material": "SM490YB"
+    },
+    {
+     "role": "flange_rib",
+     "width_mm": 230.0,
+     "thickness_mm": 25.0,
+     "count": 2,
+     "material": "SM490YB"
+    },
+    {
+     "role": "web_rib",
+     "width_mm": 190.0,
+     "thickness_mm": 19.0,
+     "count": 2,
+     "material": "SM490YB"
+    }
+   ]
+  }
+ ],
+ "cables": [],
+ "cable_specs": [],
+ "sheet_index": [],
+ "lessons": [
+  "Box flange PL width 1700 = web spacing 1600 + 2x50 outstand.",
+  "Girder WEB PL width (2976 on J-57) is the clear web height: depth = top t + web width + bottom t.",
+  "Only J-57 of the 補剛桁 series is in this drawing set; mid-span girder plates are not available."
+ ],
+ "reader": "Claude (in-session reading of 280 dpi crops)"
+}

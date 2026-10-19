@@ -1,0 +1,144 @@
+# RSI run report - reading the drawing set to fill model gaps
+
+## Practice episodes
+
+| # | Task | Page | Reader | Checks | Independent re-read | Result |
+|---|---|---|---|---|---|---|
+| 1 | sheet_index | - | claude-code-cli actor | 16/16 | done | PASS |
+| 2 | cables | 44 | claude-code-cli actor | 32/32 | done | PASS |
+| 3 | girder_end | 39 | claude-code-cli actor | 14/14 | done | PASS |
+| 4 | rib_seg2 | 25 | claude-code-cli actor | 12/12 | done | PASS |
+| 5 | rib_seg3 | 26 | claude-code-cli actor | 12/12 | done | PASS |
+| 6 | rib_seg4 | 27 | claude-code-cli actor | 12/12 | done | PASS |
+| 7 | rib_seg5 | 28 | claude-code-cli actor | 13/13 | done | PASS |
+| 8 | xbeam | 41 | claude-code-cli actor | 10/10 | done | PASS |
+| 9 | girder_end | - | memory audit | 0/1 | - | EVICTED |
+| 10 | rib_seg5 | - | memory audit | 0/1 | - | EVICTED |
+| 11 | xbeam | - | memory audit | 0/1 | - | EVICTED |
+| 12 | girder_end | 39 | claude-code-cli actor | 13/13 | done | PASS |
+| 13 | rib_seg5 | 28 | claude-code-cli actor | 14/14 | done | PASS |
+| 14 | xbeam | 41 | claude-code-cli actor | 8/8 | done | PASS |
+| 15 | rib_seg4 | - | memory audit | 0/1 | - | EVICTED |
+| 16 | rib_seg5 | - | memory audit | 0/1 | - | EVICTED |
+| 17 | rib_seg4 | 27 | claude-code-cli actor | 13/13 | done | PASS |
+| 18 | rib_seg5 | 28 | claude-code-cli actor | 16/16 | done | PASS |
+| 19 | rib_seg4 | - | reviewer | 0/1 | - | EVICTED |
+| 20 | rib_seg5 | - | reviewer | 0/1 | - | EVICTED |
+| 21 | rib_seg4 | 27 | claude-code-cli actor | 17/17 | done | PASS |
+| 22 | rib_seg5 | 28 | claude-code-cli actor | 20/20 | done | PASS |
+
+Model spend (all runs on this memory, per backend): {'claude-code-cli': 1.8926}
+
+## Verified lessons in memory
+
+* Title block fields: 設計名称 (left), 図面名称 (center), 縮尺, 図面番号 (right); the drawing number is the rightmost cell.
+* Drawing numbers are not sequential by page; the set mixes prefixes (K- abutment/general, J- superstructure, 豊E- lighting), so read each sheet's number rather than inferring it.
+* Some sheets (pages 15-16) have a blank 設計名称 and a different number format '豊E-5'; the title is in small bold type.
+* Sheets with a multi-part sequence use suffixes like (その1-1) or (その9-2); transcribe them exactly.
+* On pages 1-9 the 設計名称 cell is cropped at the left, so read the number and title from the center and right cells.
+* Page 44 is drawing J-81 'ケーブル図' (縮尺 図示); the title block is at the bottom right and the number is the rightmost cell.
+* The cable table (ケーブル寸法表) has columns: number, strand count (φ7×n), Dc, Dp, Lp, cable quantity (2), dead-load tension (PSあり, kN), node length Ls (m), L4, L3, L2, L1, elastic elongation, L0. Dead tension is the 7th column and Ls the 8th.
+* The table is split across tiles. Tiles 0 and 2 show the left columns (number to Ls) and tiles 1 and 3 show the right columns, so cross-check rows between overlapping tiles.
+* The cable specification (ケーブル仕様) lists the types in the order SPWC 73, 55, 19 from left to right, not in ascending order. Rows are 公称断面積 (mm²), 破断荷重 (kN), 弾性係数 (kN/mm², 196 for all types) and ケーブル重量 (kg/m).
+* Strand counts by cable: 19 for cables 1 and 18, 55 for the cables around the ends and the odd/even alternation, 73 for cables 4, 6, 8, 11, 13 and 15. Strand count correlates with tension: 73-strand cables carry about 476-584 kN.
+* The digit 6 in this scan resembles 8, as in 6.064 and 6.864, so check each value against its neighbours. Node length Ls rises toward mid-span, peaking at 8.221 for cable 9.
+* Sheet J-43 (アーチリブ（その2）, S=1:30, 縮尺 図示) has three stacked plan views: top flange (upper), web (middle), bottom flange (lower). Each has its own numbered callout list at the left, so read each list against its own view.
+* Callouts follow the form N-TYPE PL WxTxL (material). Here TOP PL is 1700x38x6410, BOTT PL is 1574x38x6312, WEB PL is 1447x23x6403, and RIB PL is 230x25xL. All are SM570TMC, which differs from the girder sheets that use SM490.
+* The flange ribs are 2-RIB PL 230x25x6393 on the top flange and 230x25x2359, 2179 and 496 on the bottom flange. The web ribs are a numbered list of 230x25 pieces of various lengths, with circled numbers 9-11 left blank.
+* Section depth comes from the D2~D5 table (H1..H10, I1) and varies by diaphragm station: H1 is 1450.4, 1408.3, 1362 and 1327.3 for D2 to D5, and H2 is 1400.4, 1358.3, 1312 and 1277.3. H1 is the overall height including the 38 mm top flange plus 12 or 50 mm; H2 is the web height. The depth therefore tapers over the segment, so give a range.
+* Web spacing is 1600 (webs at 1600 centre-to-centre inside a 1700 overall width, 50 overhang each side). The bottom plate is 1574 wide because the webs sit 13 mm inside each edge.
+* The axis length is the dimension labelled 6351.7 (アーチリブ軸線上) on the web view. The 6402.8, 6311.6 and 6410 values are the flange plate lengths on the top and bottom views, not the axis length.
+* The title block reads 設計名称 新田豊島橋(仮称)実施設計, 図面名称 アーチリブ（その2）, 縮尺 図示, and 図面番号 J-43 in the rightmost cell. The 配置図 at the right (S=1:300) shows segment positions JU1-JU2 on the arch axis and the overall 104100 / 74400 dimensions.
+* Page 26 is drawing J-44 アーチリブ（その3）, 縮尺 図示. The title block number is in the rightmost cell, and the sheet title also reads S=1:30.
+* Arch rib sheets (J-43, J-44) use three stacked plan views: top flange on top, web in the middle, bottom flange at the bottom. Each view has its own numbered callout list, so read each list against its own view. The web list is at the lower left, and the bottom flange list is under the bottom view.
+* Segment 3 (JU2 to JU3) uses SM490YB for all plates with callouts. Segment 2 (J-43) used SM570TMC, so do not carry the material over from one sheet to the next.
+* Callouts: 1-TOP PL 1700x38x8067, 2-RIB PL 220x22x8057 (top flange). 1-BOTT PL 1574x38x7941, with 2-RIB PL 220x22 of lengths 1395, 2820, 1270 and 695 (bottom flange). 2-WEB PL 1315x23x8060 and 2-RIB PL 220x22 of lengths 461 to 2086 (web). Circled numbers 9 and 10 in the web list are blank.
+* The depth comes from the table of H1..H7 and I1 by diaphragm (D6, D7, D8/D9). H1 is the overall height (1286.6, 1258.5, 1250). H2 is the web height (1236.6, 1208.5, 1200), which is H1 minus the 50 mm offset (H1 includes 38 mm top flange plus 12 mm). The depth tapers over the segment, so give a range. D8/D9 is H2 = 1200, so the depth is 1200 to 1236.6. Note the web plate is 1315 wide because it is curved.
+* The axis length is the dimension on the web view labelled 8003.2 (アーチリブ軸線上). It matches the 8003.2 arc length on the 配置図 between JU2 and JU3. The plate lengths 8067, 8060 and 7941 are not the axis length.
+* The web spacing is 1600 and the overall width 1700 (50 overhang each side). The bottom plate is 1574 wide because the webs sit 13 mm inside each edge. This is the same as segment 2.
+* The digit 6 in 1236.6 and 1286.6 is hard to tell from 8 in this scan. Check each value against the table rows (H1 - H2 = 50) and the neighbouring values.
+* Page 39 is drawing J-57 補剛桁（その1-1）, 縮尺 図示, S=1:30. The number is in the rightmost title block cell. It is a different sheet family from the J-43 to J-45 arch rib sheets.
+* Stiffening girder sheets (補剛桁) use SM490YB for the flange, web and flange-rib callouts. Notes say 特記なき材質は全てSM400A, so a callout with no material, such as the 190x19 web ribs, defaults to SM400A.
+* Section A-A gives the overall depth (3038 = 30 top flange + 2976 web + 32 bottom flange) and the 1700 overall / 1600 web spacing. Use it for depth and spacing rather than the elevation.
+* The sheet shows several flange plate pieces along the girder (top 1700x16, 1700x30 and so on, bottom 1700x32). Report one entry per role and use the end-block thickness: do not list each panel or piece length. The 16 mm piece is a short end piece.
+* Callout prefixes N- give the number of pieces: 2-WEB PL is 2 webs, 2-RIB PL 230x25 is 2 ribs per flange, and 2-PL 190x19 is one horizontal stiffener per web.
+* Web horizontal stiffeners appear as two rows (upper and lower) in the web elevation, so web_rib count per web is 2. This is a judgement from the drawing and is not stated outright.
+* J-74 中間横桁 is a single I-section cross beam: one web and one bottom flange per cross-section, with the steel deck as the top flange. It is not a twin-web box like the arch ribs.
+* N-WEB PL and N-FLG PL prefixes on this sheet count plate pieces along the beam length (left/right halves). They do not count webs or flanges in the cross-section, so do not take them as the section count.
+* The flange plan view dimensions 45+35+130+35+45 = 290 give the full width of one flange plate centred on the web.
+* The tw/t1/L1 table on this sheet gives the main-girder web thickness per C-range, not the cross-beam web. The cross-beam web is the 9 mm callout plates.
+* Web depth varies along the beam: 1400 at the girders, shallower at the middle (about 1100). Report a range.
+* Materials: web and splice plates are SM490YA, flange plates are SM490YB, and anything with no callout is SM400A per the notes. Flange pieces of different widths (290x19, 490x19) appear along the beam; report the governing one per role.
+* The 10500 dimension is the girder (G1-G2) spacing, and 22000 is the overall deck width. The title block number J-74 is in the rightmost cell.
+* J-45 is arch rib segment 4 (JU3 to JU4); drawing number J-45 is in the rightmost title block cell. Segment 4 uses 1-TOP PL 1700x28x8254, 1-BOTT PL 1574x28x8126, 2-WEB PL 1330x23x8247, and 220x22 ribs, all SM490YB.
+* The axis length is the 8190 (アーチリブ軸線上) dimension on the web view; 8254, 8247 and 8126 are plate lengths. The D10~D14 section view gives overall 1250 and web height 1200; the web plate is 1330 wide because it is curved.
+* The web rib pitch is read from the section view dimension 3@400=1200, which sits between 600 and 600 end dimensions. It implies two horizontal stiffener rows per web, at 400 and 800 from the bottom, so web_rib count per web is 2. This is a judgement; the drawing does not state the count.
+* Flange rib callouts of the form 2-RIB PL mean 2 ribs per flange in the cross-section. Web rib callouts such as 4-RIB or 2-RIB list pieces along the length, not per cross-section.
+* Section pitch dimensions such as 3@400 may appear alongside 600 end spacings, so check how many rows the section view actually shows rather than assuming n+1 stiffeners.
+* Page 28 is drawing J-46 アーチリブ（その5） (縮尺 図示, S=1:30); the number is in the rightmost title block cell. It is segment 5 (JU4 to JU5).
+* Segment 5 callouts: 1-TOP PL 1700x26x9683, 2-RIB PL 220x22x9673; 1-BOTT PL 1574x26x9558 with 2-RIB PL 220x22 of lengths 557, 1015 (4-RIB), 3607 and 555; 2-WEB PL 1343x23x9676. All are SM490YB, and the splice plates are SM490YA.
+* The axis length is the 9620.4 (アーチリブ軸線上) dimension on the web view. The 9682.6, 9683, 9676 and 9558.3 values are plate or flange lengths.
+* The D15~D18 section view shows overall 1250 and web height 1200 with 50 for the top flange offset. The depth is constant at 1200 over this segment. The web plate is 1343 wide because it is curved.
+* In the D15~D18 section view the 3@400=1200 dimension is drawn between 600 and 600 end dimensions, with 400/400/400 steps. That gives two horizontal stiffener rows per web, at 400 and 800, and the web elevation shows two dashed rib rows. Web rib pitch is 400 and count per web is 2.
+* The web callouts N-RIB (4-RIB, 3-RIB, 1-RIB) list pieces along the length for both webs, so they are not a per-section count. Flange 2-RIB callouts give two ribs per flange, which is what the plan views show.
+* Check the material on each sheet; do not carry it over from other segments.
+
+## Knowledge used by the model
+
+* hangers: J-81 ケーブル図 (verified)
+* girder: inferred: J-57 plates at the J-5 depth 1950 mm (J-58..J-72 not in the set)
+* rib segment 1: inferred from segment 2
+* rib segment 9: inferred from segment 2
+* arch rib: J-43..J-46 (verified), mirrored about the crown
+* cross beams: J-74 (verified); top flange = steel deck 1 m x 12 mm (assumed effective width)
+
+| Section | A (m2) | Iyy (m4) | Izz (m4) | J (m4) | Source |
+|---|---|---|---|---|---|
+| CABLE_SPWC73 | 0.00281 | 0.00000 | 0.00000 | 0.00000 | J-81 ケーブル図 (verified) |
+| CABLE_SPWC55 | 0.00212 | 0.00000 | 0.00000 | 0.00000 | J-81 ケーブル図 (verified) |
+| CABLE_SPWC19 | 0.00073 | 0.00000 | 0.00000 | 0.00000 | J-81 ケーブル図 (verified) |
+| GIRDER_END | 0.24998 | 0.36425 | 0.10263 | 0.21166 | J-57 (verified) |
+| GIRDER | 0.21081 | 0.13452 | 0.07756 | 0.11912 | inferred: J-57 plates at the J-5 depth 1950 mm (J-58..J-72 not in the set) |
+| RIB_SEG2 | 0.22850 | 0.06758 | 0.07726 | 0.08781 | J-43 (verified) |
+| RIB_SEG3 | 0.21568 | 0.05392 | 0.07191 | 0.07635 | J-44 (verified) |
+| RIB_SEG4 | 0.18302 | 0.04212 | 0.06462 | 0.06506 | J-45 (verified) |
+| RIB_SEG5 | 0.17665 | 0.04007 | 0.06326 | 0.06268 | J-46 (verified) |
+| XBEAM | 0.02848 | 0.00746 | 0.00104 | 0.00000 | J-74 (verified); top flange = steel deck 1 m x 12 mm (assumed effective width) |
+
+## Effect on the model (assumed sections -> verified sections)
+
+| Case | Quantity | Assumptions only | With memory |
+|---|---|---|---|
+| DEAD | midspan_deflection_mm | 328.5 | 182.8 |
+| DEAD | rib_axial_crown_kN | -9,908.1 | -11,494.2 |
+| DEAD | girder_axial_midspan_kN | 9,846.3 | 11,436.3 |
+| DEAD | max_sagging_kNm | 42,789.0 | 49,597.2 |
+| DEAD | max_hogging_kNm | -2,370.8 | -2,752.1 |
+| LIVE_B | midspan_deflection_mm | 139.7 | 68.4 |
+| LIVE_B | rib_axial_crown_kN | -4,318.3 | -4,321.4 |
+| LIVE_B | girder_axial_midspan_kN | 4,283.8 | 4,291.6 |
+| LIVE_B | max_sagging_kNm | 17,687.2 | 17,687.2 |
+| LIVE_B | max_hogging_kNm | -344.1 | -464.3 |
+
+Hanger dead-load tension (G1): model vs the design table on J-81 (design values include cable prestress / length adjustment, so they are a reference, not a pass/fail target).
+
+| Hanger | Assumptions only (kN) | With memory (kN) | J-81 design (kN) |
+|---|---|---|---|
+| C6-L | 313 | 94 | 224 |
+| C6-R | 843 | 694 | 246 |
+| C7-L | 36 | 102 | 306 |
+| C7-R | 631 | 696 | 564 |
+| C8-L | 25 | 61 | 382 |
+| C8-R | 513 | 558 | 576 |
+| C9-L | 130 | 133 | 396 |
+| C9-R | 390 | 448 | 476 |
+| C10-L | 258 | 243 | 372 |
+| C10-R | 258 | 243 | 364 |
+| C11-L | 390 | 448 | 492 |
+| C11-R | 130 | 133 | 387 |
+| C12-L | 513 | 558 | 584 |
+| C12-R | 26 | 61 | 368 |
+| C13-L | 631 | 696 | 560 |
+| C13-R | 36 | 102 | 292 |
+| C14-L | 842 | 693 | 240 |
+| C14-R | 313 | 94 | 222 |

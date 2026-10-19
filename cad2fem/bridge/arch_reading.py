@@ -49,6 +49,8 @@ class ArchReading(BaseModel):
     cable_anchor_order: list[str] = Field(description="Anchor names in chain order, e.g. C6-L, C6-R, C7-L ...")
     cables: list[CableReading]
     cable_angle_at_crown_deg: Optional[float] = Field(default=None, description="Hanger inclination shown at the crown")
+    rib_member_lengths_mm: list[float] = Field(
+        default_factory=list, description="部材長 of the arch-rib segments along the axis, springing to springing")
 
     # --- cross-section -------------------------------------------------------
     deck_width_mm: float = Field(description="総幅員")

@@ -1,0 +1,175 @@
+{
+ "task": "xbeam",
+ "time": "2026-10-19 03:23:28",
+ "page": 41,
+ "reader": "claude-code-cli actor",
+ "ok": true,
+ "checks": [
+  {
+   "check": "web and bottom flange reported",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "depth below main-girder end depth and above 0.5 m",
+   "ok": true,
+   "detail": "1400"
+  },
+  {
+   "check": "web thickness plausible",
+   "ok": true,
+   "detail": "9.0"
+  },
+  {
+   "check": "bottom flange width plausible",
+   "ok": true,
+   "detail": "290.0"
+  },
+  {
+   "check": "independent re-read: 1 XBEAM depth 1400, axis length 10500",
+   "ok": true,
+   "detail": "The 1400 depth dimension and the 10500 dimension are both on the sheet."
+  },
+  {
+   "check": "independent re-read: 2 web plate 1418x9 SM490YA (2)",
+   "ok": true,
+   "detail": "Label ③ reads 2-WEB PL 1418x9x1010 (SM490YA)."
+  },
+  {
+   "check": "independent re-read: 3 web plate 1327x9 SM490YA (2)",
+   "ok": true,
+   "detail": "Label ④ reads 2-WEB PL 1327x9x2870 (SM490YA)."
+  },
+  {
+   "check": "independent re-read: 4 web plate 1119x9 SM490YA (1)",
+   "ok": true,
+   "detail": "Label ⑤ reads 1-WEB PL 1119x9x2680 (SM490YA)."
+  },
+  {
+   "check": "independent re-read: 5 bottom plate 290x19 SM490YB (2)",
+   "ok": true,
+   "detail": "Labels ⑤ and ⑥ read 2-FLG PL 290x19x1021 and 290x19x2881 (SM490YB)."
+  },
+  {
+   "check": "independent re-read: 6 bottom plate 490x19 SM490YB (1)",
+   "ok": true,
+   "detail": "Label ⑦ reads 1-FLG PL 490x19x2680 (SM490YB)."
+  }
+ ],
+ "llm": {
+  "items": [
+   {
+    "item": "1 XBEAM depth 1400, axis length 10500",
+    "agree": true,
+    "note": "The 1400 depth dimension and the 10500 dimension are both on the sheet."
+   },
+   {
+    "item": "2 web plate 1418x9 SM490YA (2)",
+    "agree": true,
+    "note": "Label ③ reads 2-WEB PL 1418x9x1010 (SM490YA)."
+   },
+   {
+    "item": "3 web plate 1327x9 SM490YA (2)",
+    "agree": true,
+    "note": "Label ④ reads 2-WEB PL 1327x9x2870 (SM490YA)."
+   },
+   {
+    "item": "4 web plate 1119x9 SM490YA (1)",
+    "agree": true,
+    "note": "Label ⑤ reads 1-WEB PL 1119x9x2680 (SM490YA)."
+   },
+   {
+    "item": "5 bottom plate 290x19 SM490YB (2)",
+    "agree": true,
+    "note": "Labels ⑤ and ⑥ read 2-FLG PL 290x19x1021 and 290x19x2881 (SM490YB)."
+   },
+   {
+    "item": "6 bottom plate 490x19 SM490YB (1)",
+    "agree": true,
+    "note": "Label ⑦ reads 1-FLG PL 490x19x2680 (SM490YB)."
+   }
+  ],
+  "status": "done"
+ },
+ "spent_usd": {
+  "claude-code-cli": 1.2332
+ },
+ "claims": {
+  "task": "xbeam",
+  "sheets": [
+   "J-74 中間横桁"
+  ],
+  "facts": [],
+  "sections": [
+   {
+    "name": "XBEAM",
+    "sheet": "J-74",
+    "view": "中間横桁 S=1:30 elevation (C1~C19部) with plan of the bottom flange; callouts read between G1 and G2 (10500 span)",
+    "depth_mm": 1400.0,
+    "depth_range_mm": [
+     1100.0,
+     1400.0
+    ],
+    "web_spacing_mm": null,
+    "axis_length_mm": 10500.0,
+    "plates": [
+     {
+      "role": "web",
+      "width_mm": 1418.0,
+      "thickness_mm": 9.0,
+      "count": 2,
+      "material": "SM490YA"
+     },
+     {
+      "role": "web",
+      "width_mm": 1327.0,
+      "thickness_mm": 9.0,
+      "count": 2,
+      "material": "SM490YA"
+     },
+     {
+      "role": "web",
+      "width_mm": 1119.0,
+      "thickness_mm": 9.0,
+      "count": 1,
+      "material": "SM490YA"
+     },
+     {
+      "role": "bottom",
+      "width_mm": 290.0,
+      "thickness_mm": 19.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "bottom",
+      "width_mm": 490.0,
+      "thickness_mm": 19.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web_rib",
+      "width_mm": 120.0,
+      "thickness_mm": 10.0,
+      "count": 2,
+      "material": "SM400A"
+     }
+    ]
+   }
+  ],
+  "cables": [],
+  "cable_specs": [],
+  "sheet_index": [],
+  "lessons": [
+   "Page 41 is drawing J-74 中間横桁 (縮尺 図示, S=1:30 near the top). The number is in the rightmost title block cell, and the 設計名称 reads 新田豊島橋(仮称)実施設計.",
+   "On the intermediate cross beam sheet the top flange is the steel deck, so only the web and bottom flange are callouts. Web callouts read N-WEB PL WxTxL (SM490YA): 3 is 1418x9x1010, 4 is 1327x9x2870 and 5 is 1119x9x2680. The cantilever-end webs 1 and 2 are 1074x10x3253 and 1400x10x835.",
+   "Bottom flange callouts are in the plan view below the elevation: 5 is 2-FLG PL 290x19x1021, 6 is 2-FLG PL 290x19x2881 (both SM490YB) and 7 is 1-FLG PL 490x19x2680 (SM490YB). The cantilever ends use 2-FLG PL 220x10x3049 and 897, with no material stated, so SM400A applies by the note.",
+   "The web plate widths (1418, 1327, 1119) are not the section depth, because the bottom flange follows a curve (30295.3R). Take the depth from the vertical dimensions: 1400 at the girder ends and about 1100 at midspan, so give a range.",
+   "The cross beam 配置図 and the 22000 / 10500 dimensions are overall layout values, not a web spacing. The 1600 dimension is the main girder web spacing and 10500 is the G1-G2 span. The cross beam has a single web plane, so web spacing is not applicable.",
+   "Table tw/t1/L1 (C1 18/8/1584, C2~C5 23/13/1574, C6,C7 18/8/1584, C8~C12 16/6/1588) gives the main girder web thickness and gap at each cross beam, not the cross beam web. The cross beam web is 9 mm.",
+   "The general note says unlabelled material = SM400A, and the H.STIFF PL 120x10 and V.STIFF PL 100x9 pieces carry no material. The scan blurs 6 and 8 (e.g. 1146 vs 1148), so check against neighbouring dimensions."
+  ],
+  "reader": "claude-code-cli actor"
+ }
+}

@@ -1,0 +1,169 @@
+{
+ "task": "rib_seg3",
+ "time": "2026-10-19 03:21:40",
+ "page": 26,
+ "reader": "claude-code-cli actor",
+ "ok": true,
+ "checks": [
+  {
+   "check": "top, bottom and two webs reported",
+   "ok": true,
+   "detail": "1/1/2"
+  },
+  {
+   "check": "web spacing = main girder width (J-5/J-8)",
+   "ok": true,
+   "detail": "1600 vs 1600"
+  },
+  {
+   "check": "top flange covers the webs (outstand 0-200 mm)",
+   "ok": true,
+   "detail": "1700 vs 1600"
+  },
+  {
+   "check": "top thickness plausible",
+   "ok": true,
+   "detail": "38"
+  },
+  {
+   "check": "bottom thickness plausible",
+   "ok": true,
+   "detail": "38"
+  },
+  {
+   "check": "web thickness plausible",
+   "ok": true,
+   "detail": "23"
+  },
+  {
+   "check": "segment 3 axis length = J-8 部材長",
+   "ok": true,
+   "detail": "8003.2 vs 8003.2"
+  },
+  {
+   "check": "rib depth between crown depth (J-5) and +30%",
+   "ok": true,
+   "detail": "1200 in [1175, 1560]"
+  },
+  {
+   "check": "independent re-read: 1 RIB_SEG3 depth / axis length",
+   "ok": true,
+   "detail": "The drawing shows 8003.2 (アーチリブ軸線上) as the axis length. The H2 value at D8/D9 is 1200, and 1200 is also marked on the elevation."
+  },
+  {
+   "check": "independent re-read: 2 top plate 1700x38 SM490YB",
+   "ok": true,
+   "detail": "The list shows 1-TOP PL 1700x38x8067 (SM490YB)."
+  },
+  {
+   "check": "independent re-read: 3 bottom plate 1574x38 SM490YB",
+   "ok": true,
+   "detail": "The list shows 1-BOTT PL 1574x38x7941 (SM490YB)."
+  },
+  {
+   "check": "independent re-read: 4 web plate 1315x23 SM490YB x2",
+   "ok": true,
+   "detail": "The list shows 2-WEB PL 1315x23x8060 (SM490YB)."
+  }
+ ],
+ "llm": {
+  "items": [
+   {
+    "item": "1 RIB_SEG3 depth / axis length",
+    "agree": true,
+    "note": "The drawing shows 8003.2 (アーチリブ軸線上) as the axis length. The H2 value at D8/D9 is 1200, and 1200 is also marked on the elevation."
+   },
+   {
+    "item": "2 top plate 1700x38 SM490YB",
+    "agree": true,
+    "note": "The list shows 1-TOP PL 1700x38x8067 (SM490YB)."
+   },
+   {
+    "item": "3 bottom plate 1574x38 SM490YB",
+    "agree": true,
+    "note": "The list shows 1-BOTT PL 1574x38x7941 (SM490YB)."
+   },
+   {
+    "item": "4 web plate 1315x23 SM490YB x2",
+    "agree": true,
+    "note": "The list shows 2-WEB PL 1315x23x8060 (SM490YB)."
+   }
+  ],
+  "status": "done"
+ },
+ "spent_usd": {
+  "claude-code-cli": 0.7578
+ },
+ "claims": {
+  "task": "rib_seg3",
+  "sheets": [
+   "J-44 アーチリブ（その3）"
+  ],
+  "facts": [],
+  "sections": [
+   {
+    "name": "RIB_SEG3",
+    "sheet": "J-44",
+    "view": "D6~D9 section view and H1-I1 table (D6, D7, D8/D9), with top, web and bottom plan views, scale S=1:30",
+    "depth_mm": 1200.0,
+    "depth_range_mm": [
+     1200.0,
+     1236.6
+    ],
+    "web_spacing_mm": 1600.0,
+    "axis_length_mm": 8003.2,
+    "plates": [
+     {
+      "role": "top",
+      "width_mm": 1700.0,
+      "thickness_mm": 38.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "bottom",
+      "width_mm": 1574.0,
+      "thickness_mm": 38.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web",
+      "width_mm": 1315.0,
+      "thickness_mm": 23.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "flange_rib",
+      "width_mm": 220.0,
+      "thickness_mm": 22.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web_rib",
+      "width_mm": 220.0,
+      "thickness_mm": 22.0,
+      "count": 2,
+      "material": "SM490YB"
+     }
+    ]
+   }
+  ],
+  "cables": [],
+  "cable_specs": [],
+  "sheet_index": [],
+  "lessons": [
+   "Page 26 is drawing J-44 アーチリブ（その3）, 縮尺 図示. The title block number is in the rightmost cell, and the sheet title also reads S=1:30.",
+   "Arch rib sheets (J-43, J-44) use three stacked plan views: top flange on top, web in the middle, bottom flange at the bottom. Each view has its own numbered callout list, so read each list against its own view. The web list is at the lower left, and the bottom flange list is under the bottom view.",
+   "Segment 3 (JU2 to JU3) uses SM490YB for all plates with callouts. Segment 2 (J-43) used SM570TMC, so do not carry the material over from one sheet to the next.",
+   "Callouts: 1-TOP PL 1700x38x8067, 2-RIB PL 220x22x8057 (top flange). 1-BOTT PL 1574x38x7941, with 2-RIB PL 220x22 of lengths 1395, 2820, 1270 and 695 (bottom flange). 2-WEB PL 1315x23x8060 and 2-RIB PL 220x22 of lengths 461 to 2086 (web). Circled numbers 9 and 10 in the web list are blank.",
+   "The depth comes from the table of H1..H7 and I1 by diaphragm (D6, D7, D8/D9). H1 is the overall height (1286.6, 1258.5, 1250). H2 is the web height (1236.6, 1208.5, 1200), which is H1 minus the 50 mm offset (H1 includes 38 mm top flange plus 12 mm). The depth tapers over the segment, so give a range. D8/D9 is H2 = 1200, so the depth is 1200 to 1236.6. Note the web plate is 1315 wide because it is curved.",
+   "The axis length is the dimension on the web view labelled 8003.2 (アーチリブ軸線上). It matches the 8003.2 arc length on the 配置図 between JU2 and JU3. The plate lengths 8067, 8060 and 7941 are not the axis length.",
+   "The web spacing is 1600 and the overall width 1700 (50 overhang each side). The bottom plate is 1574 wide because the webs sit 13 mm inside each edge. This is the same as segment 2.",
+   "The digit 6 in 1236.6 and 1286.6 is hard to tell from 8 in this scan. Check each value against the table rows (H1 - H2 = 50) and the neighbouring values."
+  ],
+  "reader": "claude-code-cli actor"
+ }
+}

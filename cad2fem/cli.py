@@ -83,6 +83,46 @@ def arch_main(argv: list[str]) -> int:
     return _summary(bb)
 
 
+def rsi_main(argv: list[str]) -> int:
+    from .rsi import RSIConfig, run_rsi
+
+    ap = argparse.ArgumentParser(prog="cad2fem rsi",
+                                 description="RSI multi-agent loop: practise reading the detail sheets "
+                                             "(Curriculum -> Actor -> Verifier -> Memory), then rebuild "
+                                             "the arch model from frozen memory")
+    ap.add_argument("--pdf-dir", default="cad_pdf")
+    ap.add_argument("--reading", default="cad_pdf/readings/J-5_J-8_arch_reading.json")
+    ap.add_argument("--memory", default="memory", help="memory directory (knowledge, lessons, episodes)")
+    ap.add_argument("-o", "--out", default="out_rsi")
+    ap.add_argument("--backend", choices=("auto", "cli", "api", "none"), default="auto",
+                    help="auto: API key if set, else the claude CLI; none: replay saved transcripts")
+    ap.add_argument("--practice-dir", default="cad_pdf/readings/practice",
+                    help="saved transcripts replayed by --backend none")
+    ap.add_argument("--budget", type=float, default=5.0, help="USD cap for model calls")
+    ap.add_argument("--attempts", type=int, default=2, help="attempts per task")
+    ap.add_argument("--tasks", help="comma list of task ids (default: all)")
+    ap.add_argument("--no-llm-verify", action="store_true", help="skip the independent re-read")
+    ap.add_argument("--relearn", action="append", default=[], metavar="TASK=REASON",
+                    help="reviewer feedback: evict TASK from memory and re-practise it (repeatable)")
+    ap.add_argument("-v", "--verbose", action="store_true")
+    a = ap.parse_args(argv)
+    _logging(a.verbose)
+    from pathlib import Path
+    cfg = RSIConfig(pdf_dir=a.pdf_dir, reading_file=a.reading, memory_dir=a.memory,
+                    practice_dir=a.practice_dir, work_dir=str(Path(a.out) / "work"), out_dir=a.out,
+                    backend=a.backend, budget_usd=a.budget, max_attempts=a.attempts,
+                    llm_verify=not a.no_llm_verify,
+                    tasks=[t.strip() for t in a.tasks.split(",")] if a.tasks else None,
+                    relearn=dict(r.split("=", 1) if "=" in r else (r, "reviewer request") for r in a.relearn))
+    try:
+        res = run_rsi(cfg)
+    except PipelineError as exc:
+        print(f"\nFAILED: {exc}", file=sys.stderr)
+        return 2
+    print(f"\nRSI report: {res['report']}")
+    return _summary(res["learned"])
+
+
 def _summary(bb) -> int:
     print("\nOutputs:")
     for k, v in (bb.get("outputs") or {}).items():
@@ -101,9 +141,12 @@ def main(argv: list[str] | None = None) -> int:
         return bridge_main(argv[1:])
     if argv and argv[0] == "arch":
         return arch_main(argv[1:])
+    if argv and argv[0] == "rsi":
+        return rsi_main(argv[1:])
     ap = argparse.ArgumentParser(prog="cad2fem",
                                  epilog="Whole-bridge models: cad2fem bridge <pdfs...> -h | "
-                                        "scanned arch bridges: cad2fem arch <pdfs...> -h",
+                                        "scanned arch bridges: cad2fem arch <pdfs...> -h | "
+                                        "RSI reading loop: cad2fem rsi -h",
                                  description="Multi-agent CAD-PDF -> FEM input file generator")
     ap.add_argument("pdf", help="vector CAD drawing (PDF)")
     ap.add_argument("-o", "--out", default="out", help="output directory")

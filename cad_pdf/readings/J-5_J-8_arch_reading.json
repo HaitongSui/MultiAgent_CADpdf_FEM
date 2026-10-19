@@ -256,6 +256,12 @@
    "sheet": "J-8 基本寸法図 (PDF（241101）-17)",
    "view": "断面図 (12100, 1600, 8000) and J-5 上部工断面図",
    "note": null
+  },
+  {
+   "field": "rib_member_lengths_mm",
+   "sheet": "J-8 基本寸法図 (PDF（241101）-17)",
+   "view": "側面図 部材長 row along the arch axis",
+   "note": "sums to 76853.6; segment lengths repeated on J-43..J-46"
   }
  ],
  "uncertain": [
@@ -264,5 +270,16 @@
   "Rib width and all plate thicknesses are not dimensioned on J-5/J-8 (they are on the arch-rib and girder detail sheets 21-39); the model uses assumed values.",
   "Cable section, cross-beam section and lateral bracing (JU1-JU8 marks) are not dimensioned on these sheets."
  ],
- "reader": "Claude (in-session reading of rendered sheet images, 280 dpi crops)"
+ "reader": "Claude (in-session reading of rendered sheet images, 280 dpi crops)",
+ "rib_member_lengths_mm": [
+  11070.2,
+  6351.7,
+  8003.2,
+  8190,
+  9620.4,
+  8186.8,
+  8019.6,
+  6341.7,
+  11070
+ ]
 }

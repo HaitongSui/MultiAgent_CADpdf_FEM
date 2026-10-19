@@ -1,0 +1,436 @@
+{
+ "task": "cables",
+ "time": "2026-10-19 03:20:00",
+ "page": 44,
+ "reader": "claude-code-cli actor",
+ "ok": true,
+ "checks": [
+  {
+   "check": "one entry per hanger of the J-8 layout",
+   "ok": true,
+   "detail": "[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18]"
+  },
+  {
+   "check": "SPWC 73: area = strands x 38.48 mm2",
+   "ok": true,
+   "detail": "2810 vs 2809"
+  },
+  {
+   "check": "SPWC 73: E plausible for wire",
+   "ok": true,
+   "detail": "196"
+  },
+  {
+   "check": "SPWC 55: area = strands x 38.48 mm2",
+   "ok": true,
+   "detail": "2120 vs 2117"
+  },
+  {
+   "check": "SPWC 55: E plausible for wire",
+   "ok": true,
+   "detail": "196"
+  },
+  {
+   "check": "SPWC 19: area = strands x 38.48 mm2",
+   "ok": true,
+   "detail": "731 vs 731"
+  },
+  {
+   "check": "SPWC 19: E plausible for wire",
+   "ok": true,
+   "detail": "196"
+  },
+  {
+   "check": "every hanger has a specified cable type",
+   "ok": true,
+   "detail": "types [19, 55, 73]"
+  },
+  {
+   "check": "cable types symmetric about midspan",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "node lengths differ from J-8 hanger lengths by a constant",
+   "ok": true,
+   "detail": "offset 876 mm, scatter 1.9 mm"
+  },
+  {
+   "check": "dead-load tensions symmetric (<10%)",
+   "ok": true,
+   "detail": "max 4.9%"
+  },
+  {
+   "check": "independent re-read: 1 SPWC 73",
+   "ok": true,
+   "detail": "2 810 mm2, 196 kN/mm2"
+  },
+  {
+   "check": "independent re-read: 2 SPWC 55",
+   "ok": true,
+   "detail": "2 120 mm2, 196 kN/mm2"
+  },
+  {
+   "check": "independent re-read: 3 SPWC 19",
+   "ok": true,
+   "detail": "731 mm2, 196 kN/mm2"
+  },
+  {
+   "check": "independent re-read: 4 cable 1",
+   "ok": true,
+   "detail": "19 wires, 224.01 kN"
+  },
+  {
+   "check": "independent re-read: 5 cable 2",
+   "ok": true,
+   "detail": "55 wires, 245.96 kN"
+  },
+  {
+   "check": "independent re-read: 6 cable 3",
+   "ok": true,
+   "detail": "55 wires, 306.11 kN"
+  },
+  {
+   "check": "independent re-read: 7 cable 4",
+   "ok": true,
+   "detail": "73 wires, 563.94 kN"
+  },
+  {
+   "check": "independent re-read: 8 cable 5",
+   "ok": true,
+   "detail": "55 wires, 382.12 kN"
+  },
+  {
+   "check": "independent re-read: 9 cable 6",
+   "ok": true,
+   "detail": "73 wires, 576.39 kN"
+  },
+  {
+   "check": "independent re-read: 10 cable 7",
+   "ok": true,
+   "detail": "55 wires, 395.88 kN"
+  },
+  {
+   "check": "independent re-read: 11 cable 8",
+   "ok": true,
+   "detail": "73 wires, 476.31 kN"
+  },
+  {
+   "check": "independent re-read: 12 cable 9",
+   "ok": true,
+   "detail": "55 wires, 372.21 kN"
+  },
+  {
+   "check": "independent re-read: 13 cable 10",
+   "ok": true,
+   "detail": "55 wires, 364.47 kN"
+  },
+  {
+   "check": "independent re-read: 14 cable 11",
+   "ok": true,
+   "detail": "73 wires, 492.08 kN"
+  },
+  {
+   "check": "independent re-read: 15 cable 12",
+   "ok": true,
+   "detail": "55 wires, 386.75 kN"
+  },
+  {
+   "check": "independent re-read: 16 cable 13",
+   "ok": true,
+   "detail": "73 wires, 583.75 kN"
+  },
+  {
+   "check": "independent re-read: 17 cable 14",
+   "ok": true,
+   "detail": "55 wires, 367.55 kN"
+  },
+  {
+   "check": "independent re-read: 18 cable 15",
+   "ok": true,
+   "detail": "73 wires, 560.14 kN"
+  },
+  {
+   "check": "independent re-read: 19 cable 16",
+   "ok": true,
+   "detail": "55 wires, 291.80 kN"
+  },
+  {
+   "check": "independent re-read: 20 cable 17",
+   "ok": true,
+   "detail": "55 wires, 240.24 kN"
+  },
+  {
+   "check": "independent re-read: 21 cable 18",
+   "ok": true,
+   "detail": "19 wires, 221.51 kN"
+  }
+ ],
+ "llm": {
+  "items": [
+   {
+    "item": "1 SPWC 73",
+    "agree": true,
+    "note": "2 810 mm2, 196 kN/mm2"
+   },
+   {
+    "item": "2 SPWC 55",
+    "agree": true,
+    "note": "2 120 mm2, 196 kN/mm2"
+   },
+   {
+    "item": "3 SPWC 19",
+    "agree": true,
+    "note": "731 mm2, 196 kN/mm2"
+   },
+   {
+    "item": "4 cable 1",
+    "agree": true,
+    "note": "19 wires, 224.01 kN"
+   },
+   {
+    "item": "5 cable 2",
+    "agree": true,
+    "note": "55 wires, 245.96 kN"
+   },
+   {
+    "item": "6 cable 3",
+    "agree": true,
+    "note": "55 wires, 306.11 kN"
+   },
+   {
+    "item": "7 cable 4",
+    "agree": true,
+    "note": "73 wires, 563.94 kN"
+   },
+   {
+    "item": "8 cable 5",
+    "agree": true,
+    "note": "55 wires, 382.12 kN"
+   },
+   {
+    "item": "9 cable 6",
+    "agree": true,
+    "note": "73 wires, 576.39 kN"
+   },
+   {
+    "item": "10 cable 7",
+    "agree": true,
+    "note": "55 wires, 395.88 kN"
+   },
+   {
+    "item": "11 cable 8",
+    "agree": true,
+    "note": "73 wires, 476.31 kN"
+   },
+   {
+    "item": "12 cable 9",
+    "agree": true,
+    "note": "55 wires, 372.21 kN"
+   },
+   {
+    "item": "13 cable 10",
+    "agree": true,
+    "note": "55 wires, 364.47 kN"
+   },
+   {
+    "item": "14 cable 11",
+    "agree": true,
+    "note": "73 wires, 492.08 kN"
+   },
+   {
+    "item": "15 cable 12",
+    "agree": true,
+    "note": "55 wires, 386.75 kN"
+   },
+   {
+    "item": "16 cable 13",
+    "agree": true,
+    "note": "73 wires, 583.75 kN"
+   },
+   {
+    "item": "17 cable 14",
+    "agree": true,
+    "note": "55 wires, 367.55 kN"
+   },
+   {
+    "item": "18 cable 15",
+    "agree": true,
+    "note": "73 wires, 560.14 kN"
+   },
+   {
+    "item": "19 cable 16",
+    "agree": true,
+    "note": "55 wires, 291.80 kN"
+   },
+   {
+    "item": "20 cable 17",
+    "agree": true,
+    "note": "55 wires, 240.24 kN"
+   },
+   {
+    "item": "21 cable 18",
+    "agree": true,
+    "note": "19 wires, 221.51 kN"
+   }
+  ],
+  "status": "done"
+ },
+ "spent_usd": {
+  "claude-code-cli": 0.2832
+ },
+ "claims": {
+  "task": "cables",
+  "sheets": [
+   "J-81 ケーブル図"
+  ],
+  "facts": [],
+  "sections": [],
+  "cables": [
+   {
+    "number": 1,
+    "strands": 19,
+    "dead_tension_kN": 224.01,
+    "node_length_m": 4.65
+   },
+   {
+    "number": 2,
+    "strands": 55,
+    "dead_tension_kN": 245.96,
+    "node_length_m": 5.514
+   },
+   {
+    "number": 3,
+    "strands": 55,
+    "dead_tension_kN": 306.11,
+    "node_length_m": 6.064
+   },
+   {
+    "number": 4,
+    "strands": 73,
+    "dead_tension_kN": 563.94,
+    "node_length_m": 6.864
+   },
+   {
+    "number": 5,
+    "strands": 55,
+    "dead_tension_kN": 382.12,
+    "node_length_m": 7.14
+   },
+   {
+    "number": 6,
+    "strands": 73,
+    "dead_tension_kN": 576.39,
+    "node_length_m": 7.73
+   },
+   {
+    "number": 7,
+    "strands": 55,
+    "dead_tension_kN": 395.88,
+    "node_length_m": 7.894
+   },
+   {
+    "number": 8,
+    "strands": 73,
+    "dead_tension_kN": 476.31,
+    "node_length_m": 8.179
+   },
+   {
+    "number": 9,
+    "strands": 55,
+    "dead_tension_kN": 372.21,
+    "node_length_m": 8.221
+   },
+   {
+    "number": 10,
+    "strands": 55,
+    "dead_tension_kN": 364.47,
+    "node_length_m": 8.219
+   },
+   {
+    "number": 11,
+    "strands": 73,
+    "dead_tension_kN": 492.08,
+    "node_length_m": 8.179
+   },
+   {
+    "number": 12,
+    "strands": 55,
+    "dead_tension_kN": 386.75,
+    "node_length_m": 7.879
+   },
+   {
+    "number": 13,
+    "strands": 73,
+    "dead_tension_kN": 583.75,
+    "node_length_m": 7.713
+   },
+   {
+    "number": 14,
+    "strands": 55,
+    "dead_tension_kN": 367.55,
+    "node_length_m": 7.111
+   },
+   {
+    "number": 15,
+    "strands": 73,
+    "dead_tension_kN": 560.14,
+    "node_length_m": 6.833
+   },
+   {
+    "number": 16,
+    "strands": 55,
+    "dead_tension_kN": 291.8,
+    "node_length_m": 6.032
+   },
+   {
+    "number": 17,
+    "strands": 55,
+    "dead_tension_kN": 240.24,
+    "node_length_m": 5.485
+   },
+   {
+    "number": 18,
+    "strands": 19,
+    "dead_tension_kN": 221.51,
+    "node_length_m": 4.627
+   }
+  ],
+  "cable_specs": [
+   {
+    "name": "SPWC 73",
+    "strands": 73,
+    "area_mm2": 2810.0,
+    "E_kN_mm2": 196.0,
+    "breaking_kN": 4410.0,
+    "weight_kg_m": 24.1
+   },
+   {
+    "name": "SPWC 55",
+    "strands": 55,
+    "area_mm2": 2120.0,
+    "E_kN_mm2": 196.0,
+    "breaking_kN": 3320.0,
+    "weight_kg_m": 18.2
+   },
+   {
+    "name": "SPWC 19",
+    "strands": 19,
+    "area_mm2": 731.0,
+    "E_kN_mm2": 196.0,
+    "breaking_kN": 1150.0,
+    "weight_kg_m": 6.5
+   }
+  ],
+  "sheet_index": [],
+  "lessons": [
+   "Page 44 is drawing J-81 'ケーブル図' (縮尺 図示); the title block is at the bottom right and the number is the rightmost cell.",
+   "The cable table (ケーブル寸法表) has columns: number, strand count (φ7×n), Dc, Dp, Lp, cable quantity (2), dead-load tension (PSあり, kN), node length Ls (m), L4, L3, L2, L1, elastic elongation, L0. Dead tension is the 7th column and Ls the 8th.",
+   "The table is split across tiles. Tiles 0 and 2 show the left columns (number to Ls) and tiles 1 and 3 show the right columns, so cross-check rows between overlapping tiles.",
+   "The cable specification (ケーブル仕様) lists the types in the order SPWC 73, 55, 19 from left to right, not in ascending order. Rows are 公称断面積 (mm²), 破断荷重 (kN), 弾性係数 (kN/mm², 196 for all types) and ケーブル重量 (kg/m).",
+   "Strand counts by cable: 19 for cables 1 and 18, 55 for the cables around the ends and the odd/even alternation, 73 for cables 4, 6, 8, 11, 13 and 15. Strand count correlates with tension: 73-strand cables carry about 476-584 kN.",
+   "The digit 6 in this scan resembles 8, as in 6.064 and 6.864, so check each value against its neighbours. Node length Ls rises toward mid-span, peaking at 8.221 for cable 9."
+  ],
+  "reader": "claude-code-cli actor"
+ }
+}

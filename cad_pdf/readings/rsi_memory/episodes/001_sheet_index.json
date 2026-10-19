@@ -1,0 +1,410 @@
+{
+ "task": "sheet_index",
+ "time": "2026-10-19 03:19:24",
+ "page": null,
+ "reader": "claude-code-cli actor",
+ "ok": true,
+ "checks": [
+  {
+   "check": "every page indexed once",
+   "ok": true,
+   "detail": "47 entries, 47 unique pages"
+  },
+  {
+   "check": "drawing numbers present",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "page 14 is J-5 (verified reading)",
+   "ok": true,
+   "detail": "claimed J-5"
+  },
+  {
+   "check": "page 17 is J-8 (verified reading)",
+   "ok": true,
+   "detail": "claimed J-8"
+  },
+  {
+   "check": "independent re-read: 1. page 1 K-3 全体一般図(その1)",
+   "ok": true,
+   "detail": "Only the title block is visible: the title and sheet number match. It shows no dimensions, areas, counts or steel grade, so no numeric value could be checked."
+  },
+  {
+   "check": "independent re-read: 2. page 5 K-8 A1橋台構造一般図(その3)",
+   "ok": true,
+   "detail": "Only the title block is visible: the title and sheet number match. It shows no numeric values."
+  },
+  {
+   "check": "independent re-read: 3. page 9 K-20 A2橋台構造一般図(その3)",
+   "ok": true,
+   "detail": "Only the title block is visible: the title and sheet number match, and the scale reads '150, 1:30'. It shows no other numeric values."
+  },
+  {
+   "check": "independent re-read: 4. page 13 J-4 全体一般図(その2)",
+   "ok": true,
+   "detail": "Only the title block is visible: the title and sheet number match. It shows no numeric values."
+  },
+  {
+   "check": "independent re-read: 5. page 17 J-8 基本寸法図",
+   "ok": true,
+   "detail": "Only the title block is visible: the title and sheet number match. It shows no numeric values."
+  },
+  {
+   "check": "independent re-read: 6. page 21 J-39 アーチリブ(その1-1)",
+   "ok": true,
+   "detail": "Only the title block is visible: the title and sheet number match. It shows no plate sizes."
+  },
+  {
+   "check": "independent re-read: 7. page 25 J-43 アーチリブ(その2)",
+   "ok": true,
+   "detail": "Only the title block is visible: the title and sheet number match. It shows no plate sizes."
+  },
+  {
+   "check": "independent re-read: 8. page 29 J-47 アーチリブ(その6)",
+   "ok": true,
+   "detail": "Only the title block is visible: the title and sheet number match. It shows no plate sizes."
+  },
+  {
+   "check": "independent re-read: 9. page 33 J-51 アーチリブ(その9-2)",
+   "ok": true,
+   "detail": "Only the title block is visible: the title and sheet number match. It shows no plate sizes."
+  },
+  {
+   "check": "independent re-read: 10. page 37 J-55 アーチリブ(その10-2)",
+   "ok": true,
+   "detail": "Only the title block is visible: the title and sheet number match. It shows no plate sizes."
+  },
+  {
+   "check": "independent re-read: 11. page 41 J-74 中間横桁",
+   "ok": true,
+   "detail": "Only the title block is visible: the title and sheet number match. It shows no plate sizes."
+  },
+  {
+   "check": "independent re-read: 12. page 45 J-82 ケーブルカバー",
+   "ok": true,
+   "detail": "Only the title block is visible: the title and sheet number match. It shows no numeric values."
+  }
+ ],
+ "llm": {
+  "items": [
+   {
+    "item": "1. page 1 K-3 全体一般図(その1)",
+    "agree": true,
+    "note": "Only the title block is visible: the title and sheet number match. It shows no dimensions, areas, counts or steel grade, so no numeric value could be checked."
+   },
+   {
+    "item": "2. page 5 K-8 A1橋台構造一般図(その3)",
+    "agree": true,
+    "note": "Only the title block is visible: the title and sheet number match. It shows no numeric values."
+   },
+   {
+    "item": "3. page 9 K-20 A2橋台構造一般図(その3)",
+    "agree": true,
+    "note": "Only the title block is visible: the title and sheet number match, and the scale reads '150, 1:30'. It shows no other numeric values."
+   },
+   {
+    "item": "4. page 13 J-4 全体一般図(その2)",
+    "agree": true,
+    "note": "Only the title block is visible: the title and sheet number match. It shows no numeric values."
+   },
+   {
+    "item": "5. page 17 J-8 基本寸法図",
+    "agree": true,
+    "note": "Only the title block is visible: the title and sheet number match. It shows no numeric values."
+   },
+   {
+    "item": "6. page 21 J-39 アーチリブ(その1-1)",
+    "agree": true,
+    "note": "Only the title block is visible: the title and sheet number match. It shows no plate sizes."
+   },
+   {
+    "item": "7. page 25 J-43 アーチリブ(その2)",
+    "agree": true,
+    "note": "Only the title block is visible: the title and sheet number match. It shows no plate sizes."
+   },
+   {
+    "item": "8. page 29 J-47 アーチリブ(その6)",
+    "agree": true,
+    "note": "Only the title block is visible: the title and sheet number match. It shows no plate sizes."
+   },
+   {
+    "item": "9. page 33 J-51 アーチリブ(その9-2)",
+    "agree": true,
+    "note": "Only the title block is visible: the title and sheet number match. It shows no plate sizes."
+   },
+   {
+    "item": "10. page 37 J-55 アーチリブ(その10-2)",
+    "agree": true,
+    "note": "Only the title block is visible: the title and sheet number match. It shows no plate sizes."
+   },
+   {
+    "item": "11. page 41 J-74 中間横桁",
+    "agree": true,
+    "note": "Only the title block is visible: the title and sheet number match. It shows no plate sizes."
+   },
+   {
+    "item": "12. page 45 J-82 ケーブルカバー",
+    "agree": true,
+    "note": "Only the title block is visible: the title and sheet number match. It shows no numeric values."
+   }
+  ],
+  "status": "done"
+ },
+ "spent_usd": {
+  "claude-code-cli": 0.1164
+ },
+ "claims": {
+  "task": "sheet_index",
+  "sheets": [],
+  "facts": [],
+  "sections": [],
+  "cables": [],
+  "cable_specs": [],
+  "sheet_index": [
+   {
+    "page": 1,
+    "drawing_no": "K-3",
+    "title": "全体一般図(その1)"
+   },
+   {
+    "page": 2,
+    "drawing_no": "K-4",
+    "title": "全体一般図(その2)"
+   },
+   {
+    "page": 3,
+    "drawing_no": "K-6",
+    "title": "A1橋台構造一般図(その1)"
+   },
+   {
+    "page": 4,
+    "drawing_no": "K-7",
+    "title": "A1橋台構造一般図(その2)"
+   },
+   {
+    "page": 5,
+    "drawing_no": "K-8",
+    "title": "A1橋台構造一般図(その3)"
+   },
+   {
+    "page": 6,
+    "drawing_no": "K-16",
+    "title": "A1橋台鋼管杭詳細図"
+   },
+   {
+    "page": 7,
+    "drawing_no": "K-18",
+    "title": "A2橋台構造一般図(その1)"
+   },
+   {
+    "page": 8,
+    "drawing_no": "K-19",
+    "title": "A2橋台構造一般図(その2)"
+   },
+   {
+    "page": 9,
+    "drawing_no": "K-20",
+    "title": "A2橋台構造一般図(その3)"
+   },
+   {
+    "page": 10,
+    "drawing_no": "J-94",
+    "title": "防護柵(その2)"
+   },
+   {
+    "page": 11,
+    "drawing_no": "J-104",
+    "title": "地覆配筋図(参考図)"
+   },
+   {
+    "page": 12,
+    "drawing_no": "J-3",
+    "title": "全体一般図(その1)"
+   },
+   {
+    "page": 13,
+    "drawing_no": "J-4",
+    "title": "全体一般図(その2)"
+   },
+   {
+    "page": 14,
+    "drawing_no": "J-5",
+    "title": "構造一般図"
+   },
+   {
+    "page": 15,
+    "drawing_no": "豊E-5",
+    "title": "照明器具詳細図(1)"
+   },
+   {
+    "page": 16,
+    "drawing_no": "豊E-6",
+    "title": "照明器具詳細図(2)"
+   },
+   {
+    "page": 17,
+    "drawing_no": "J-8",
+    "title": "基本寸法図"
+   },
+   {
+    "page": 18,
+    "drawing_no": "J-10",
+    "title": "共通詳細図(その1)"
+   },
+   {
+    "page": 19,
+    "drawing_no": "J-11",
+    "title": "共通詳細図(その2)"
+   },
+   {
+    "page": 20,
+    "drawing_no": "J-12",
+    "title": "共通詳細図(その3)"
+   },
+   {
+    "page": 21,
+    "drawing_no": "J-39",
+    "title": "アーチリブ(その1-1)"
+   },
+   {
+    "page": 22,
+    "drawing_no": "J-40",
+    "title": "アーチリブ(その1-2)"
+   },
+   {
+    "page": 23,
+    "drawing_no": "J-41",
+    "title": "アーチリブ(その1-3)"
+   },
+   {
+    "page": 24,
+    "drawing_no": "J-42",
+    "title": "アーチリブ(その1-4)"
+   },
+   {
+    "page": 25,
+    "drawing_no": "J-43",
+    "title": "アーチリブ(その2)"
+   },
+   {
+    "page": 26,
+    "drawing_no": "J-44",
+    "title": "アーチリブ(その3)"
+   },
+   {
+    "page": 27,
+    "drawing_no": "J-45",
+    "title": "アーチリブ(その4)"
+   },
+   {
+    "page": 28,
+    "drawing_no": "J-46",
+    "title": "アーチリブ(その5)"
+   },
+   {
+    "page": 29,
+    "drawing_no": "J-47",
+    "title": "アーチリブ(その6)"
+   },
+   {
+    "page": 30,
+    "drawing_no": "J-48",
+    "title": "アーチリブ(その7)"
+   },
+   {
+    "page": 31,
+    "drawing_no": "J-49",
+    "title": "アーチリブ(その8)"
+   },
+   {
+    "page": 32,
+    "drawing_no": "J-50",
+    "title": "アーチリブ(その9-1)"
+   },
+   {
+    "page": 33,
+    "drawing_no": "J-51",
+    "title": "アーチリブ(その9-2)"
+   },
+   {
+    "page": 34,
+    "drawing_no": "J-52",
+    "title": "アーチリブ(その9-3)"
+   },
+   {
+    "page": 35,
+    "drawing_no": "J-53",
+    "title": "アーチリブ(その9-4)"
+   },
+   {
+    "page": 36,
+    "drawing_no": "J-54",
+    "title": "アーチリブ(その10-1)"
+   },
+   {
+    "page": 37,
+    "drawing_no": "J-55",
+    "title": "アーチリブ(その10-2)"
+   },
+   {
+    "page": 38,
+    "drawing_no": "J-56",
+    "title": "アーチリブ(その10-3)"
+   },
+   {
+    "page": 39,
+    "drawing_no": "J-57",
+    "title": "補剛桁(その1-1)"
+   },
+   {
+    "page": 40,
+    "drawing_no": "J-73",
+    "title": "端横桁"
+   },
+   {
+    "page": 41,
+    "drawing_no": "J-74",
+    "title": "中間横桁"
+   },
+   {
+    "page": 42,
+    "drawing_no": "J-75",
+    "title": "横梁"
+   },
+   {
+    "page": 43,
+    "drawing_no": "J-76",
+    "title": "横リブ"
+   },
+   {
+    "page": 44,
+    "drawing_no": "J-81",
+    "title": "ケーブル図"
+   },
+   {
+    "page": 45,
+    "drawing_no": "J-82",
+    "title": "ケーブルカバー"
+   },
+   {
+    "page": 46,
+    "drawing_no": "J-90",
+    "title": "支承図"
+   },
+   {
+    "page": 47,
+    "drawing_no": "J-93",
+    "title": "防護柵(その1)"
+   }
+  ],
+  "lessons": [
+   "Title block fields: 設計名称 (left), 図面名称 (center), 縮尺, 図面番号 (right); the drawing number is the rightmost cell.",
+   "Drawing numbers are not sequential by page; the set mixes prefixes (K- abutment/general, J- superstructure, 豊E- lighting), so read each sheet's number rather than inferring it.",
+   "Some sheets (pages 15-16) have a blank 設計名称 and a different number format '豊E-5'; the title is in small bold type.",
+   "Sheets with a multi-part sequence use suffixes like (その1-1) or (その9-2); transcribe them exactly.",
+   "On pages 1-9 the 設計名称 cell is cropped at the left, so read the number and title from the center and right cells."
+  ],
+  "reader": "claude-code-cli actor"
+ }
+}

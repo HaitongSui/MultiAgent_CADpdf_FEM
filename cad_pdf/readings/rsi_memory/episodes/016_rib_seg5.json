@@ -1,0 +1,86 @@
+{
+ "task": "rib_seg5",
+ "audit": true,
+ "ok": false,
+ "reader": "memory audit",
+ "page": null,
+ "checks": [
+  {
+   "check": "web_rib count per flange/web = verified rib_seg4 (same depth 1200)",
+   "ok": false,
+   "detail": "4 vs 2"
+  }
+ ],
+ "llm": {},
+ "spent_usd": {},
+ "claims": {
+  "task": "rib_seg5",
+  "sheets": [
+   "J-46 アーチリブ（その5）"
+  ],
+  "facts": [],
+  "sections": [
+   {
+    "name": "RIB_SEG5",
+    "sheet": "J-46",
+    "view": "D15~D18 section view and web/flange plan views (S=1:30)",
+    "depth_mm": 1200.0,
+    "depth_range_mm": [
+     1200.0,
+     1200.0
+    ],
+    "web_spacing_mm": 1600.0,
+    "axis_length_mm": 9620.4,
+    "plates": [
+     {
+      "role": "top",
+      "width_mm": 1700.0,
+      "thickness_mm": 26.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "bottom",
+      "width_mm": 1574.0,
+      "thickness_mm": 26.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web",
+      "width_mm": 1343.0,
+      "thickness_mm": 23.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "flange_rib",
+      "width_mm": 220.0,
+      "thickness_mm": 22.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web_rib",
+      "width_mm": 220.0,
+      "thickness_mm": 22.0,
+      "count": 4,
+      "material": "SM490YB"
+     }
+    ]
+   }
+  ],
+  "cables": [],
+  "cable_specs": [],
+  "sheet_index": [],
+  "lessons": [
+   "Segment 5 is sheet J-46 (page 28). Callouts: 1-TOP PL 1700x26x9683, 2-RIB PL 220x22x9673, 1-BOTT PL 1574x26x9558, 2-WEB PL 1343x23x9676. All are SM490YB.",
+   "The axis length is the dimension labelled 9620.4 (アーチリブ軸線上) on the web view. It matches the 9620.4 arc on the 配置図 between JU4 and JU5. The plate lengths 9683, 9676 and 9558 and the 9682.6 flange dimension are not the axis length.",
+   "The depth is constant: the D15~D18 section shows 1250 overall and 1200 web height with 3@400 rib spacing. Use the 1200 section depth, not the 1343 curved web width.",
+   "Report one plate entry per role, not one per callout. The flange ribs are 2-RIB per flange (2 on the top flange, with 2-RIB and 4-RIB groups on the bottom flange that are the same role, so use 2 per flange). The web ribs are numbered 2-RIB to 4-RIB groups in the list; the 4-RIB 220x22 groups are the common count per web, so use 4 in a single web_rib entry. Do not sum all the callout counts.",
+   "Check the callout prefix N- for piece counts, and read each list against its own view: top list at the upper right of the top view, web list at the lower right of the web view, bottom list under the bottom view.",
+   "Segment thickness changes from sheet to sheet (J-45 28 mm flanges, J-46 26 mm), so always read the callouts."
+  ],
+  "reader": "claude-code-cli actor"
+ }
+}

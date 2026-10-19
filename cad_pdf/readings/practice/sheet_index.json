@@ -1,0 +1,251 @@
+{
+ "task": "sheet_index",
+ "sheets": [
+  "title blocks of all 47 sheets"
+ ],
+ "facts": [],
+ "sections": [],
+ "cables": [],
+ "cable_specs": [],
+ "sheet_index": [
+  {
+   "page": 1,
+   "drawing_no": "K-3",
+   "title": "全体一般図（その1）"
+  },
+  {
+   "page": 2,
+   "drawing_no": "K-4",
+   "title": "全体一般図（その2）"
+  },
+  {
+   "page": 3,
+   "drawing_no": "K-6",
+   "title": "A1橋台構造一般図(その1)"
+  },
+  {
+   "page": 4,
+   "drawing_no": "K-7",
+   "title": "A1橋台構造一般図(その2)"
+  },
+  {
+   "page": 5,
+   "drawing_no": "K-8",
+   "title": "A1橋台構造一般図(その3)"
+  },
+  {
+   "page": 6,
+   "drawing_no": "K-16",
+   "title": "A1橋台鋼管杭詳細図"
+  },
+  {
+   "page": 7,
+   "drawing_no": "K-18",
+   "title": "A2橋台構造一般図(その1)"
+  },
+  {
+   "page": 8,
+   "drawing_no": "K-19",
+   "title": "A2橋台構造一般図(その2)"
+  },
+  {
+   "page": 9,
+   "drawing_no": "K-20",
+   "title": "A2橋台構造一般図(その3)"
+  },
+  {
+   "page": 10,
+   "drawing_no": "J-94",
+   "title": "防護柵（その2）"
+  },
+  {
+   "page": 11,
+   "drawing_no": "J-104",
+   "title": "地覆配筋図（参考図）"
+  },
+  {
+   "page": 12,
+   "drawing_no": "J-3",
+   "title": "全体一般図（その1）"
+  },
+  {
+   "page": 13,
+   "drawing_no": "J-4",
+   "title": "全体一般図（その2）"
+  },
+  {
+   "page": 14,
+   "drawing_no": "J-5",
+   "title": "構造一般図"
+  },
+  {
+   "page": 15,
+   "drawing_no": "豊E-5",
+   "title": "照明器具詳細図（1）"
+  },
+  {
+   "page": 16,
+   "drawing_no": "豊E-6",
+   "title": "照明器具詳細図（2）"
+  },
+  {
+   "page": 17,
+   "drawing_no": "J-8",
+   "title": "基本寸法図"
+  },
+  {
+   "page": 18,
+   "drawing_no": "J-10",
+   "title": "共通詳細図（その1）"
+  },
+  {
+   "page": 19,
+   "drawing_no": "J-11",
+   "title": "共通詳細図（その2）"
+  },
+  {
+   "page": 20,
+   "drawing_no": "J-12",
+   "title": "共通詳細図（その3）"
+  },
+  {
+   "page": 21,
+   "drawing_no": "J-39",
+   "title": "アーチリブ（その1-1）"
+  },
+  {
+   "page": 22,
+   "drawing_no": "J-40",
+   "title": "アーチリブ（その1-2）"
+  },
+  {
+   "page": 23,
+   "drawing_no": "J-41",
+   "title": "アーチリブ（その1-3）"
+  },
+  {
+   "page": 24,
+   "drawing_no": "J-42",
+   "title": "アーチリブ（その1-4）"
+  },
+  {
+   "page": 25,
+   "drawing_no": "J-43",
+   "title": "アーチリブ（その2）"
+  },
+  {
+   "page": 26,
+   "drawing_no": "J-44",
+   "title": "アーチリブ（その3）"
+  },
+  {
+   "page": 27,
+   "drawing_no": "J-45",
+   "title": "アーチリブ（その4）"
+  },
+  {
+   "page": 28,
+   "drawing_no": "J-46",
+   "title": "アーチリブ（その5）"
+  },
+  {
+   "page": 29,
+   "drawing_no": "J-47",
+   "title": "アーチリブ（その6）"
+  },
+  {
+   "page": 30,
+   "drawing_no": "J-48",
+   "title": "アーチリブ（その7）"
+  },
+  {
+   "page": 31,
+   "drawing_no": "J-49",
+   "title": "アーチリブ（その8）"
+  },
+  {
+   "page": 32,
+   "drawing_no": "J-50",
+   "title": "アーチリブ（その9-1）"
+  },
+  {
+   "page": 33,
+   "drawing_no": "J-51",
+   "title": "アーチリブ（その9-2）"
+  },
+  {
+   "page": 34,
+   "drawing_no": "J-52",
+   "title": "アーチリブ（その9-3）"
+  },
+  {
+   "page": 35,
+   "drawing_no": "J-53",
+   "title": "アーチリブ（その9-4）"
+  },
+  {
+   "page": 36,
+   "drawing_no": "J-54",
+   "title": "アーチリブ（その10-1）"
+  },
+  {
+   "page": 37,
+   "drawing_no": "J-55",
+   "title": "アーチリブ（その10-2）"
+  },
+  {
+   "page": 38,
+   "drawing_no": "J-56",
+   "title": "アーチリブ（その10-3）"
+  },
+  {
+   "page": 39,
+   "drawing_no": "J-57",
+   "title": "補剛桁（その1-1）"
+  },
+  {
+   "page": 40,
+   "drawing_no": "J-73",
+   "title": "端横桁"
+  },
+  {
+   "page": 41,
+   "drawing_no": "J-74",
+   "title": "中間横桁"
+  },
+  {
+   "page": 42,
+   "drawing_no": "J-75",
+   "title": "横梁"
+  },
+  {
+   "page": 43,
+   "drawing_no": "J-76",
+   "title": "横リブ"
+  },
+  {
+   "page": 44,
+   "drawing_no": "J-81",
+   "title": "ケーブル図"
+  },
+  {
+   "page": 45,
+   "drawing_no": "J-82",
+   "title": "ケーブルカバー"
+  },
+  {
+   "page": 46,
+   "drawing_no": "J-90",
+   "title": "支承図"
+  },
+  {
+   "page": 47,
+   "drawing_no": "J-93",
+   "title": "防護柵（その1）"
+  }
+ ],
+ "lessons": [
+  "Title block: 図面番号 is the right-most cell, 図面名称 the cell left of 縮尺. J-numbers are the superstructure, K-numbers the abutments, 豊E lighting."
+ ],
+ "reader": "Claude (in-session reading of 280 dpi crops)"
+}

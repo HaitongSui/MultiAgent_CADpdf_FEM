@@ -25,7 +25,7 @@ def midspan_simple_moment(m: FrameModel, res, x_mid: float) -> float:
 class ArchReportAgent(Agent):
     name = "arch_report"
     requires = ("outputs", "frame", "arch_geometry", "arch_reading", "out_dir")
-    optional = ("bridge_results", "arch_assumptions")
+    optional = ("bridge_results", "arch_assumptions", "arch_knowledge")
     provides = ("report",)
 
     def __init__(self, plot: bool = True) -> None:
@@ -59,10 +59,17 @@ class ArchReportAgent(Agent):
         L += ["", "| Hanger | Drawing (mm) | Model (mm) | Diff (mm) |", "|---|---|---|---|"]
         L += [f"| {n} | {1000 * d:.1f} | {1000 * mo:.1f} | {1000 * (mo - d):+.1f} |"
               for n, d, mo in zip(geo.anchor_names, geo.cable_length, geo.cable_model_length)]
-        L += ["", "## Values not on J-5 / J-8 (ASSUMED - replace from detail sheets)", "",
-              "| Parameter | Value |", "|---|---|"] + [f"| {k} | {v} |" for k, v in a.rows()]
-        L += ["", "| Section | A (m2) | Iyy (m4) | Izz (m4) | J (m4) |", "|---|---|---|---|---|"]
-        L += [f"| {k} | {s.A:.5f} | {s.Iyy:.5f} | {s.Izz:.5f} | {s.J:.5f} |" for k, s in m.sections.items()]
+        kn = bb.get("arch_knowledge")
+        if kn is not None and not kn.empty:
+            L += ["", "## Values from RSI memory (verified detail sheets)", ""]
+            L += [f"* {k}: {v}" for k, v in kn.sources.items()]
+            L += ["", "## Values not on the sheets read (ASSUMED where memory has no value)", ""]
+        else:
+            L += ["", "## Values not on J-5 / J-8 (ASSUMED - replace from detail sheets)", ""]
+        L += ["| Parameter | Value |", "|---|---|"] + [f"| {k} | {v} |" for k, v in a.rows()]
+        L += ["", "| Section | A (m2) | Iyy (m4) | Izz (m4) | J (m4) | Source |", "|---|---|---|---|---|---|"]
+        L += [f"| {k} | {s.A:.5f} | {s.Iyy:.5f} | {s.Izz:.5f} | {s.J:.5f} | {s.source} |"
+              for k, s in m.sections.items()]
         L += ["", "Load notes: " + "; ".join(m.layout.notes), ""]
         if r.uncertain:
             L += ["## Reader's doubts", ""] + [f"* {u}" for u in r.uncertain] + [""]
@@ -110,7 +117,7 @@ class ArchReportAgent(Agent):
             if b.group.startswith("XBEAM") or "_G2" in b.group:
                 continue
             p = m.nodes[[b.n1, b.n2]]
-            cable = b.section == "CABLE"
+            cable = b.section.startswith("CABLE")
             ax.plot(p[:, 0], p[:, 2], color=INK_2, lw=0.8 if cable else 1.6, zorder=2)
             if u is not None:
                 q = p + scale * u[[b.n1, b.n2], :3]

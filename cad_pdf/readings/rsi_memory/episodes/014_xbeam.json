@@ -1,0 +1,129 @@
+{
+ "task": "xbeam",
+ "time": "2026-10-19 03:34:54",
+ "page": 41,
+ "reader": "claude-code-cli actor",
+ "ok": true,
+ "checks": [
+  {
+   "check": "one plate entry per role (governing cross-section, not per panel/piece)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "web and bottom flange reported",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "depth below main-girder end depth and above 0.5 m",
+   "ok": true,
+   "detail": "1400"
+  },
+  {
+   "check": "web thickness plausible",
+   "ok": true,
+   "detail": "9.0"
+  },
+  {
+   "check": "bottom flange width plausible",
+   "ok": true,
+   "detail": "290.0"
+  },
+  {
+   "check": "independent re-read: 1. XBEAM depth 1400 mm",
+   "ok": true,
+   "detail": "The 1400 depth dimension appears several times on the section views."
+  },
+  {
+   "check": "independent re-read: 2. XBEAM web plate 1418x9 SM490YA",
+   "ok": true,
+   "detail": "The label reads '③ 2-WEB PL 1418x9x1010 (SM490YA)'."
+  },
+  {
+   "check": "independent re-read: 3. XBEAM bottom plate 290x19 SM490YB",
+   "ok": true,
+   "detail": "The labels read '⑤ 2-FLG PL 290x19x1021 (SM490YB)' and '⑥ 2-FLG PL 290x19x2881 (SM490YB)'."
+  }
+ ],
+ "llm": {
+  "items": [
+   {
+    "item": "1. XBEAM depth 1400 mm",
+    "agree": true,
+    "note": "The 1400 depth dimension appears several times on the section views."
+   },
+   {
+    "item": "2. XBEAM web plate 1418x9 SM490YA",
+    "agree": true,
+    "note": "The label reads '③ 2-WEB PL 1418x9x1010 (SM490YA)'."
+   },
+   {
+    "item": "3. XBEAM bottom plate 290x19 SM490YB",
+    "agree": true,
+    "note": "The labels read '⑤ 2-FLG PL 290x19x1021 (SM490YB)' and '⑥ 2-FLG PL 290x19x2881 (SM490YB)'."
+   }
+  ],
+  "status": "done"
+ },
+ "spent_usd": {
+  "claude-code-cli": 0.3353
+ },
+ "claims": {
+  "task": "xbeam",
+  "sheets": [
+   "J-74 中間横桁"
+  ],
+  "facts": [],
+  "sections": [
+   {
+    "name": "XBEAM",
+    "sheet": "J-74",
+    "view": "中間横桁 elevation and flange plan (C1~C19), S=1:30",
+    "depth_mm": 1400.0,
+    "depth_range_mm": [
+     1100.0,
+     1400.0
+    ],
+    "web_spacing_mm": 10500.0,
+    "axis_length_mm": null,
+    "plates": [
+     {
+      "role": "web",
+      "width_mm": 1418.0,
+      "thickness_mm": 9.0,
+      "count": 1,
+      "material": "SM490YA"
+     },
+     {
+      "role": "bottom",
+      "width_mm": 290.0,
+      "thickness_mm": 19.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web_rib",
+      "width_mm": 120.0,
+      "thickness_mm": 10.0,
+      "count": 2,
+      "material": "SM400A"
+     }
+    ]
+   }
+  ],
+  "cables": [],
+  "cable_specs": [],
+  "sheet_index": [],
+  "lessons": [
+   "J-74 中間横桁 is a single I-section cross beam: one web and one bottom flange per cross-section, with the steel deck as the top flange. It is not a twin-web box like the arch ribs.",
+   "N-WEB PL and N-FLG PL prefixes on this sheet count plate pieces along the beam length (left/right halves). They do not count webs or flanges in the cross-section, so do not take them as the section count.",
+   "The flange plan view dimensions 45+35+130+35+45 = 290 give the full width of one flange plate centred on the web.",
+   "The tw/t1/L1 table on this sheet gives the main-girder web thickness per C-range, not the cross-beam web. The cross-beam web is the 9 mm callout plates.",
+   "Web depth varies along the beam: 1400 at the girders, shallower at the middle (about 1100). Report a range.",
+   "Materials: web and splice plates are SM490YA, flange plates are SM490YB, and anything with no callout is SM400A per the notes. Flange pieces of different widths (290x19, 490x19) appear along the beam; report the governing one per role.",
+   "The 10500 dimension is the girder (G1-G2) spacing, and 22000 is the overall deck width. The title block number J-74 is in the rightmost cell."
+  ],
+  "reader": "claude-code-cli actor"
+ }
+}

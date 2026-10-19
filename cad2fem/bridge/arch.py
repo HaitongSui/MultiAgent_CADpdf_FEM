@@ -134,6 +134,8 @@ def fit_arch(r: ArchReading) -> ArchGeometry:
     stations = dict(zip(r.station_labels, map(float, xs)))
     _check(checks, "sum of 横桁間隔 = 支間長", 1000 * xs[-1], r.span_mm, 1.0)
     _check(checks, "sum of ケーブル間隔 = アーチリブ軸線長", sum(r.cable_anchor_chain_mm), r.arch_axis_length_mm, 1.0)
+    if r.rib_member_lengths_mm:
+        _check(checks, "sum of rib 部材長 = アーチリブ軸線長", sum(r.rib_member_lengths_mm), r.arch_axis_length_mm, 1.0)
     end = (r.girder_length_mm - r.span_mm) / 2          # girder end to bearing
     x0 = ((r.girder_length_mm - r.arch_span_mm) / 2 - end) / 1000
     x1 = x0 + r.arch_span_mm / 1000
@@ -250,9 +252,13 @@ def _stations_with_subdivision(fixed: list[float], h: float) -> list[float]:
     return out
 
 
-def build_arch_frame(r: ArchReading, geo: ArchGeometry, a: ArchAssumptions) -> FrameModel:
+def build_arch_frame(r: ArchReading, geo: ArchGeometry, a: ArchAssumptions,
+                     knowledge=None) -> FrameModel:
+    """``knowledge`` (an rsi.knowledge.ArchKnowledge) replaces assumed sections with
+    values verified from the detail sheets, element by element."""
+    kn = knowledge if knowledge is not None and not knowledge.empty else None
     steel = BridgeMaterial("SM490Y", a.steel_E, a.steel_nu, a.steel_gamma)
-    cable_mat = BridgeMaterial("CABLE", a.cable_E, 0.3, a.steel_gamma)
+    cable_mat = BridgeMaterial("CABLE", (kn.cable_E if kn and kn.cable_E else a.cable_E), 0.3, a.steel_gamma)
     secs = {
         "GIRDER": box_section("GIRDER", r.girder_width_mm / 1000, r.girder_depth_mm / 1000,
                               a.girder_tf, a.girder_tw),
@@ -260,6 +266,8 @@ def build_arch_frame(r: ArchReading, geo: ArchGeometry, a: ArchAssumptions) -> F
         "CABLE": cable_section("CABLE", a.cable_area),
         "XBEAM": i_section("XBEAM", a.xbeam_h, a.xbeam_bf, a.xbeam_tf, a.xbeam_tw),
     }
+    if kn:
+        secs.update(kn.sections)
     lay = BridgeLayout(spans=[geo.span], title="ARCH_BRIDGE", deck_material=steel,
                        pier_material=steel, element_size=a.element_size)
     m = FrameModel(nodes=np.zeros((0, 3)), sections=secs,
@@ -282,12 +290,20 @@ def build_arch_frame(r: ArchReading, geo: ArchGeometry, a: ArchAssumptions) -> F
             girder_node[(plane, round(x, 6))] = n
             nodes.append(n)
         for p, q in zip(nodes[:-1], nodes[1:]):
-            m.beams.append(Beam(p, q, "GIRDER", "STEEL", (0.0, 1.0, 0.0), f"GIRDER_{plane}"))
+            xm = (m.nodes[p, 0] + m.nodes[q, 0]) / 2
+            sec = "GIRDER_END" if (kn and "GIRDER_END" in secs and not x0 < xm < x1) else "GIRDER"
+            m.beams.append(Beam(p, q, sec, "STEEL", (0.0, 1.0, 0.0), f"GIRDER_{plane}_{sec}"))
         m.node_groups[f"GIRDER_{plane}"] = nodes
         # rib
         rib = [m.add_node((x, y, float(geo.rib_z(x)))) for x in rx]
-        for p, q in zip(rib[:-1], rib[1:]):
-            m.beams.append(Beam(p, q, "RIB", "STEEL", (0.0, 1.0, 0.0), f"RIB_{plane}"))
+        seg_s = np.r_[0.0, np.cumsum(np.linalg.norm(np.diff(m.nodes[rib], axis=0), axis=1))]
+        seg_s *= (r.arch_axis_length_mm / 1000) / seg_s[-1]          # normalise to the drawn axis length
+        for k_, (p, q) in enumerate(zip(rib[:-1], rib[1:])):
+            sec = "RIB"
+            if kn and kn.rib_segments:
+                sm = (seg_s[k_] + seg_s[k_ + 1]) / 2
+                sec = next((nm for s0, s1, nm in kn.rib_segments if s0 <= sm < s1), kn.rib_segments[-1][2])
+            m.beams.append(Beam(p, q, sec, "STEEL", (0.0, 1.0, 0.0), f"RIB_{plane}_{sec}"))
         m.node_groups[f"RIB_{plane}"] = rib
         rib_at = {round(x, 6): n for x, n in zip(rx, rib)}
         # springings: rib rigidly connected to the girder
@@ -298,7 +314,8 @@ def build_arch_frame(r: ArchReading, geo: ArchGeometry, a: ArchAssumptions) -> F
             anchor = m.add_node((xa, y, float(geo.anchor_z(xa))), f"{plane}_{name}")
             m.rigid.append((rib_at[round(float(xa), 6)], anchor))
             g = girder_node[(plane, round(geo.stations[st], 6))]
-            m.beams.append(Beam(g, anchor, "CABLE", "CABLE", (0.0, 1.0, 0.0),
+            csec = kn.cable_section_by_anchor.get(name, "CABLE") if kn else "CABLE"
+            m.beams.append(Beam(g, anchor, csec, "CABLE", (0.0, 1.0, 0.0),
                                 f"CABLE_{plane}_{name.replace('-', '_')}"))   # solver-safe set name
     # cross beams at every station
     for lab, x in geo.stations.items():
@@ -337,13 +354,17 @@ def build_arch_frame(r: ArchReading, geo: ArchGeometry, a: ArchAssumptions) -> F
 class ArchAssemblyAgent(Agent):
     name = "arch_assembly"
     requires = ("arch_reading", "arch_geometry")
-    optional = ("arch_assumptions",)
+    optional = ("arch_assumptions", "arch_knowledge")
     provides = ("frame",)
 
     def run(self, bb: Blackboard) -> None:
         a = bb.get("arch_assumptions") or ArchAssumptions()
-        m = build_arch_frame(bb["arch_reading"], bb["arch_geometry"], a)
-        n_cab = len([b for b in m.beams if b.section == "CABLE"])
+        kn = bb.get("arch_knowledge")
+        m = build_arch_frame(bb["arch_reading"], bb["arch_geometry"], a, kn)
+        if kn is not None and not kn.empty:
+            for what, src in kn.sources.items():
+                self.info(bb, f"from memory: {what} <- {src}")
+        n_cab = len([b for b in m.beams if b.section.startswith("CABLE")])
         self.info(bb, f"{m.n_nodes} nodes, {len(m.beams)} members ({n_cab} hangers), "
                       f"{len(m.rigid)} rigid links, load cases {list(m.load_cases)}")
         for note in m.layout.notes:
@@ -363,7 +384,7 @@ class ArchValidatorAgent(Agent):
         geo: ArchGeometry = bb["arch_geometry"]
         r: ArchReading = bb["arch_reading"]
         issues = [f"reading check failed: {c['check']}" for c in geo.checks if not c["ok"]]
-        n_cab = len([b for b in m.beams if b.section == "CABLE"])
+        n_cab = len([b for b in m.beams if b.section.startswith("CABLE")])
         if n_cab != 2 * len(r.cables):
             issues.append(f"{n_cab} hanger members for {len(r.cables)} hangers per plane")
         lengths = [np.linalg.norm(m.nodes[b.n2] - m.nodes[b.n1]) for b in m.beams]
@@ -392,8 +413,8 @@ def summarise_arch(m: FrameModel, geo: ArchGeometry, res) -> dict:
         if b.group.startswith("CABLE_G1_"):
             cab[b.group.removeprefix("CABLE_G1_").replace("_", "-")] = float(-res.end_forces[e, 0])
     out["hanger_force_kN"] = cab
-    rib = [e for e, b in enumerate(m.beams) if b.group == "RIB_G1"]
-    gir = [e for e, b in enumerate(m.beams) if b.group == "GIRDER_G1"]
+    rib = [e for e, b in enumerate(m.beams) if b.group.startswith("RIB_G1_")]
+    gir = [e for e, b in enumerate(m.beams) if b.group.startswith("GIRDER_G1_")]
     xm = lambda e: (m.nodes[m.beams[e].n1, 0] + m.nodes[m.beams[e].n2, 0]) / 2  # noqa: E731
     e_rib = min(rib, key=lambda e: abs(xm(e) - mid))
     e_gir = min(gir, key=lambda e: abs(xm(e) - mid))

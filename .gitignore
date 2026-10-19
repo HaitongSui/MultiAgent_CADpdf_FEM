@@ -12,3 +12,5 @@ dist/
 *.cvg
 *.12d
 spooles.out
+out_rsi/
+memory/

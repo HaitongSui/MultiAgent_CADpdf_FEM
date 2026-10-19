@@ -1,0 +1,168 @@
+{
+ "task": "rib_seg2",
+ "time": "2026-10-19 03:21:07",
+ "page": 25,
+ "reader": "claude-code-cli actor",
+ "ok": true,
+ "checks": [
+  {
+   "check": "top, bottom and two webs reported",
+   "ok": true,
+   "detail": "1/1/2"
+  },
+  {
+   "check": "web spacing = main girder width (J-5/J-8)",
+   "ok": true,
+   "detail": "1600 vs 1600"
+  },
+  {
+   "check": "top flange covers the webs (outstand 0-200 mm)",
+   "ok": true,
+   "detail": "1700 vs 1600"
+  },
+  {
+   "check": "top thickness plausible",
+   "ok": true,
+   "detail": "38"
+  },
+  {
+   "check": "bottom thickness plausible",
+   "ok": true,
+   "detail": "38"
+  },
+  {
+   "check": "web thickness plausible",
+   "ok": true,
+   "detail": "23"
+  },
+  {
+   "check": "segment 2 axis length = J-8 部材長",
+   "ok": true,
+   "detail": "6351.7 vs 6351.7"
+  },
+  {
+   "check": "rib depth between crown depth (J-5) and +30%",
+   "ok": true,
+   "detail": "1400.4 in [1175, 1560]"
+  },
+  {
+   "check": "independent re-read: 1 RIB_SEG2 depth / axis length",
+   "ok": true,
+   "detail": "The 1400.4 dimension is shown on the middle (web) view, and it matches H2 for D2 in the table. The axis length 6351.7 is labelled (アーチリブ軸線上)."
+  },
+  {
+   "check": "independent re-read: 2 top plate 1700x38 SM570TMC",
+   "ok": true,
+   "detail": "The list shows 1-TOP PL 1700x38x6410 (SM570TMC)."
+  },
+  {
+   "check": "independent re-read: 3 bottom plate 1574x38 SM570TMC",
+   "ok": true,
+   "detail": "The list shows 1-BOTT PL 1574x38x6312 (SM570TMC)."
+  },
+  {
+   "check": "independent re-read: 4 web plate 1447x23 SM570TMC x2",
+   "ok": true,
+   "detail": "The list shows 2-WEB PL 1447x23x6403 (SM570TMC)."
+  }
+ ],
+ "llm": {
+  "items": [
+   {
+    "item": "1 RIB_SEG2 depth / axis length",
+    "agree": true,
+    "note": "The 1400.4 dimension is shown on the middle (web) view, and it matches H2 for D2 in the table. The axis length 6351.7 is labelled (アーチリブ軸線上)."
+   },
+   {
+    "item": "2 top plate 1700x38 SM570TMC",
+    "agree": true,
+    "note": "The list shows 1-TOP PL 1700x38x6410 (SM570TMC)."
+   },
+   {
+    "item": "3 bottom plate 1574x38 SM570TMC",
+    "agree": true,
+    "note": "The list shows 1-BOTT PL 1574x38x6312 (SM570TMC)."
+   },
+   {
+    "item": "4 web plate 1447x23 SM570TMC x2",
+    "agree": true,
+    "note": "The list shows 2-WEB PL 1447x23x6403 (SM570TMC)."
+   }
+  ],
+  "status": "done"
+ },
+ "spent_usd": {
+  "claude-code-cli": 0.5999
+ },
+ "claims": {
+  "task": "rib_seg2",
+  "sheets": [
+   "J-43 アーチリブ（その2）"
+  ],
+  "facts": [],
+  "sections": [
+   {
+    "name": "RIB_SEG2",
+    "sheet": "J-43",
+    "view": "D2~D5 section view (H1/H2 table) with top flange, web and bottom flange plan/elevation views",
+    "depth_mm": 1400.4,
+    "depth_range_mm": [
+     1277.3,
+     1400.4
+    ],
+    "web_spacing_mm": 1600.0,
+    "axis_length_mm": 6351.7,
+    "plates": [
+     {
+      "role": "top",
+      "width_mm": 1700.0,
+      "thickness_mm": 38.0,
+      "count": 1,
+      "material": "SM570TMC"
+     },
+     {
+      "role": "bottom",
+      "width_mm": 1574.0,
+      "thickness_mm": 38.0,
+      "count": 1,
+      "material": "SM570TMC"
+     },
+     {
+      "role": "web",
+      "width_mm": 1447.0,
+      "thickness_mm": 23.0,
+      "count": 2,
+      "material": "SM570TMC"
+     },
+     {
+      "role": "flange_rib",
+      "width_mm": 230.0,
+      "thickness_mm": 25.0,
+      "count": 2,
+      "material": "SM570TMC"
+     },
+     {
+      "role": "web_rib",
+      "width_mm": 230.0,
+      "thickness_mm": 25.0,
+      "count": 2,
+      "material": "SM570TMC"
+     }
+    ]
+   }
+  ],
+  "cables": [],
+  "cable_specs": [],
+  "sheet_index": [],
+  "lessons": [
+   "Sheet J-43 (アーチリブ（その2）, S=1:30, 縮尺 図示) has three stacked plan views: top flange (upper), web (middle), bottom flange (lower). Each has its own numbered callout list at the left, so read each list against its own view.",
+   "Callouts follow the form N-TYPE PL WxTxL (material). Here TOP PL is 1700x38x6410, BOTT PL is 1574x38x6312, WEB PL is 1447x23x6403, and RIB PL is 230x25xL. All are SM570TMC, which differs from the girder sheets that use SM490.",
+   "The flange ribs are 2-RIB PL 230x25x6393 on the top flange and 230x25x2359, 2179 and 496 on the bottom flange. The web ribs are a numbered list of 230x25 pieces of various lengths, with circled numbers 9-11 left blank.",
+   "Section depth comes from the D2~D5 table (H1..H10, I1) and varies by diaphragm station: H1 is 1450.4, 1408.3, 1362 and 1327.3 for D2 to D5, and H2 is 1400.4, 1358.3, 1312 and 1277.3. H1 is the overall height including the 38 mm top flange plus 12 or 50 mm; H2 is the web height. The depth therefore tapers over the segment, so give a range.",
+   "Web spacing is 1600 (webs at 1600 centre-to-centre inside a 1700 overall width, 50 overhang each side). The bottom plate is 1574 wide because the webs sit 13 mm inside each edge.",
+   "The axis length is the dimension labelled 6351.7 (アーチリブ軸線上) on the web view. The 6402.8, 6311.6 and 6410 values are the flange plate lengths on the top and bottom views, not the axis length.",
+   "The title block reads 設計名称 新田豊島橋(仮称)実施設計, 図面名称 アーチリブ（その2）, 縮尺 図示, and 図面番号 J-43 in the rightmost cell. The 配置図 at the right (S=1:300) shows segment positions JU1-JU2 on the arch axis and the overall 104100 / 74400 dimensions."
+  ],
+  "reader": "claude-code-cli actor"
+ }
+}

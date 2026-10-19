@@ -1,0 +1,87 @@
+{
+ "task": "rib_seg5",
+ "audit": true,
+ "ok": false,
+ "reader": "reviewer",
+ "page": null,
+ "checks": [
+  {
+   "check": "reviewer: re-practise",
+   "ok": false,
+   "detail": "web_rib count was not independently verified: read the web-rib pitch in the section view (web_rib_pitch_mm)"
+  }
+ ],
+ "llm": {},
+ "spent_usd": {},
+ "claims": {
+  "task": "rib_seg5",
+  "sheets": [
+   "J-46 アーチリブ（その5）"
+  ],
+  "facts": [],
+  "sections": [
+   {
+    "name": "RIB_SEG5",
+    "sheet": "J-46",
+    "view": "D15~D18 section / web view (アーチリブ軸線上 9620.4)",
+    "depth_mm": 1200.0,
+    "depth_range_mm": [
+     1200.0,
+     1200.0
+    ],
+    "web_spacing_mm": 1600.0,
+    "axis_length_mm": 9620.4,
+    "plates": [
+     {
+      "role": "top",
+      "width_mm": 1700.0,
+      "thickness_mm": 26.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "bottom",
+      "width_mm": 1574.0,
+      "thickness_mm": 26.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web",
+      "width_mm": 1343.0,
+      "thickness_mm": 23.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "flange_rib",
+      "width_mm": 220.0,
+      "thickness_mm": 22.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web_rib",
+      "width_mm": 220.0,
+      "thickness_mm": 22.0,
+      "count": 4,
+      "material": "SM490YB"
+     }
+    ]
+   }
+  ],
+  "cables": [],
+  "cable_specs": [],
+  "sheet_index": [],
+  "lessons": [
+   "Segment 5 is sheet J-46 (アーチリブ（その5）, 縮尺 図示); the number is in the rightmost title block cell. It uses the same three stacked plan views as J-43 to J-45.",
+   "Segment 5 callouts: 1-TOP PL 1700x26x9683 and 2-RIB PL 220x22x9673 (top flange). 1-BOTT PL 1574x26x9558 with 2-RIB 220x22 of lengths 557, 1015, 3607 and 555 (bottom flange). 2-WEB PL 1343x23x9676 (web). All are SM490YB; the notes' default SM400A is not used.",
+   "Depth is from the D15~D18 section: overall 1250, web 1200, written 3@400=1200. The web is 1200 at both ends, so it does not taper. The 1343 web PL width is the curved width, not the depth.",
+   "The axis length is the dimension 9620.4 (アーチリブ軸線上) on the web view. The plate lengths 9683, 9676 and 9558.3 are not the axis length. It matches the 9620.4 arc on the 配置図.",
+   "Web ribs: the section shows 3@400=1200, which gives 4 horizontal rib rows per web (same as segment 4). The 4-RIB / 3-RIB prefixes in the web list count pieces per panel, so do not use them as the per-web count.",
+   "Flange ribs are 2 per flange (2-RIB PL callouts). The bottom flange rib callouts with a 4- prefix are piece counts along the length, not per-section counts.",
+   "When a prior check says the web_rib count must match a sibling segment with the same depth, derive it from the 3@400 spacing, not from the callout prefixes."
+  ],
+  "reader": "claude-code-cli actor"
+ }
+}

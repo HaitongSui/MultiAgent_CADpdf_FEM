@@ -1,0 +1,224 @@
+{
+ "task": "rib_seg5",
+ "time": "2026-10-19 03:42:39",
+ "page": 28,
+ "reader": "claude-code-cli actor",
+ "ok": true,
+ "checks": [
+  {
+   "check": "one plate entry per role (governing cross-section, not per panel/piece)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "top, bottom and two webs reported",
+   "ok": true,
+   "detail": "1/1/2"
+  },
+  {
+   "check": "web spacing = main girder width (J-5/J-8)",
+   "ok": true,
+   "detail": "1600 vs 1600"
+  },
+  {
+   "check": "top flange covers the webs (outstand 0-200 mm)",
+   "ok": true,
+   "detail": "1700 vs 1600"
+  },
+  {
+   "check": "top thickness plausible",
+   "ok": true,
+   "detail": "26"
+  },
+  {
+   "check": "bottom thickness plausible",
+   "ok": true,
+   "detail": "26"
+  },
+  {
+   "check": "web thickness plausible",
+   "ok": true,
+   "detail": "23"
+  },
+  {
+   "check": "segment 5 axis length = J-8 部材長",
+   "ok": true,
+   "detail": "9620.4 vs 9620.4"
+  },
+  {
+   "check": "rib depth between crown depth (J-5) and +30%",
+   "ok": true,
+   "detail": "1200 in [1175, 1560]"
+  },
+  {
+   "check": "flange_rib count per flange/web = verified rib_seg4 (same depth 1200)",
+   "ok": true,
+   "detail": "2 vs 2"
+  },
+  {
+   "check": "web_rib count per flange/web = verified rib_seg4 (same depth 1200)",
+   "ok": true,
+   "detail": "2 vs 2"
+  },
+  {
+   "check": "web ribs per web = web depth / pitch - 1",
+   "ok": true,
+   "detail": "2 vs 1200/400-1 = 2"
+  },
+  {
+   "check": "crown depth = J-5 rib depth",
+   "ok": true,
+   "detail": "1200 vs 1200"
+  },
+  {
+   "check": "independent re-read: 1 RIB_SEG5 depth / axis length",
+   "ok": true,
+   "detail": "Section depth 1200 is shown (3040Q=1200, b-b 1200) and 9620.4 is dimensioned on the arch rib axis."
+  },
+  {
+   "check": "independent re-read: 2 top plate",
+   "ok": true,
+   "detail": "The plate list reads 1-TOP PL 1700x26x9683 (SM490YB)."
+  },
+  {
+   "check": "independent re-read: 3 bottom plate",
+   "ok": true,
+   "detail": "The plate list reads 1-BOTT PL 1574x26x9558 (SM490YB)."
+  },
+  {
+   "check": "independent re-read: 4 web plate",
+   "ok": true,
+   "detail": "The plate list reads 2-WEB PL 1343x23x9676 (SM490YB)."
+  },
+  {
+   "check": "independent re-read: 5 flange_rib",
+   "ok": true,
+   "detail": "RIB PL 220x22 is listed. The top and bottom flange plans each show 2 longitudinal ribs."
+  },
+  {
+   "check": "independent re-read: 6 web_rib",
+   "ok": true,
+   "detail": "RIB PL 220x22 is listed for the webs. The count of 2 per web is read from the elevation and splice details, which are less clear than the flange plans."
+  },
+  {
+   "check": "independent re-read: 7 web-rib pitch",
+   "ok": true,
+   "detail": "The D15-D18 cross-section shows 400 spacings over the 1200 web depth."
+  }
+ ],
+ "llm": {
+  "items": [
+   {
+    "item": "1 RIB_SEG5 depth / axis length",
+    "agree": true,
+    "note": "Section depth 1200 is shown (3040Q=1200, b-b 1200) and 9620.4 is dimensioned on the arch rib axis."
+   },
+   {
+    "item": "2 top plate",
+    "agree": true,
+    "note": "The plate list reads 1-TOP PL 1700x26x9683 (SM490YB)."
+   },
+   {
+    "item": "3 bottom plate",
+    "agree": true,
+    "note": "The plate list reads 1-BOTT PL 1574x26x9558 (SM490YB)."
+   },
+   {
+    "item": "4 web plate",
+    "agree": true,
+    "note": "The plate list reads 2-WEB PL 1343x23x9676 (SM490YB)."
+   },
+   {
+    "item": "5 flange_rib",
+    "agree": true,
+    "note": "RIB PL 220x22 is listed. The top and bottom flange plans each show 2 longitudinal ribs."
+   },
+   {
+    "item": "6 web_rib",
+    "agree": true,
+    "note": "RIB PL 220x22 is listed for the webs. The count of 2 per web is read from the elevation and splice details, which are less clear than the flange plans."
+   },
+   {
+    "item": "7 web-rib pitch",
+    "agree": true,
+    "note": "The D15-D18 cross-section shows 400 spacings over the 1200 web depth."
+   }
+  ],
+  "status": "done"
+ },
+ "spent_usd": {
+  "claude-code-cli": 0.3241
+ },
+ "claims": {
+  "task": "rib_seg5",
+  "sheets": [
+   "J-46 アーチリブ（その5）"
+  ],
+  "facts": [],
+  "sections": [
+   {
+    "name": "RIB_SEG5",
+    "sheet": "J-46",
+    "view": "D15~D18 section view (H2 web height 1200, overall 1250) with plan views of top flange, web and bottom flange; segment JU4-JU5",
+    "depth_mm": 1200.0,
+    "depth_range_mm": [
+     1200.0,
+     1200.0
+    ],
+    "web_spacing_mm": 1600.0,
+    "axis_length_mm": 9620.4,
+    "web_rib_pitch_mm": 400.0,
+    "plates": [
+     {
+      "role": "top",
+      "width_mm": 1700.0,
+      "thickness_mm": 26.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "bottom",
+      "width_mm": 1574.0,
+      "thickness_mm": 26.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web",
+      "width_mm": 1343.0,
+      "thickness_mm": 23.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "flange_rib",
+      "width_mm": 220.0,
+      "thickness_mm": 22.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web_rib",
+      "width_mm": 220.0,
+      "thickness_mm": 22.0,
+      "count": 2,
+      "material": "SM490YB"
+     }
+    ]
+   }
+  ],
+  "cables": [],
+  "cable_specs": [],
+  "sheet_index": [],
+  "lessons": [
+   "Page 28 is drawing J-46 アーチリブ（その5） (縮尺 図示, S=1:30); the number is in the rightmost title block cell. It is segment 5 (JU4 to JU5).",
+   "Segment 5 callouts: 1-TOP PL 1700x26x9683, 2-RIB PL 220x22x9673; 1-BOTT PL 1574x26x9558 with 2-RIB PL 220x22 of lengths 557, 1015 (4-RIB), 3607 and 555; 2-WEB PL 1343x23x9676. All are SM490YB, and the splice plates are SM490YA.",
+   "The axis length is the 9620.4 (アーチリブ軸線上) dimension on the web view. The 9682.6, 9683, 9676 and 9558.3 values are plate or flange lengths.",
+   "The D15~D18 section view shows overall 1250 and web height 1200 with 50 for the top flange offset. The depth is constant at 1200 over this segment. The web plate is 1343 wide because it is curved.",
+   "In the D15~D18 section view the 3@400=1200 dimension is drawn between 600 and 600 end dimensions, with 400/400/400 steps. That gives two horizontal stiffener rows per web, at 400 and 800, and the web elevation shows two dashed rib rows. Web rib pitch is 400 and count per web is 2.",
+   "The web callouts N-RIB (4-RIB, 3-RIB, 1-RIB) list pieces along the length for both webs, so they are not a per-section count. Flange 2-RIB callouts give two ribs per flange, which is what the plan views show.",
+   "Check the material on each sheet; do not carry it over from other segments."
+  ],
+  "reader": "claude-code-cli actor"
+ }
+}

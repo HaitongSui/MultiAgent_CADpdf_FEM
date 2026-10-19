@@ -1,0 +1,188 @@
+{
+ "task": "rib_seg5",
+ "time": "2026-10-19 03:37:39",
+ "page": 28,
+ "reader": "claude-code-cli actor",
+ "ok": true,
+ "checks": [
+  {
+   "check": "one plate entry per role (governing cross-section, not per panel/piece)",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "check": "top, bottom and two webs reported",
+   "ok": true,
+   "detail": "1/1/2"
+  },
+  {
+   "check": "web spacing = main girder width (J-5/J-8)",
+   "ok": true,
+   "detail": "1600 vs 1600"
+  },
+  {
+   "check": "top flange covers the webs (outstand 0-200 mm)",
+   "ok": true,
+   "detail": "1700 vs 1600"
+  },
+  {
+   "check": "top thickness plausible",
+   "ok": true,
+   "detail": "26"
+  },
+  {
+   "check": "bottom thickness plausible",
+   "ok": true,
+   "detail": "26"
+  },
+  {
+   "check": "web thickness plausible",
+   "ok": true,
+   "detail": "23"
+  },
+  {
+   "check": "segment 5 axis length = J-8 部材長",
+   "ok": true,
+   "detail": "9620.4 vs 9620.4"
+  },
+  {
+   "check": "rib depth between crown depth (J-5) and +30%",
+   "ok": true,
+   "detail": "1200 in [1175, 1560]"
+  },
+  {
+   "check": "flange_rib count per flange/web = verified rib_seg4 (same depth 1200)",
+   "ok": true,
+   "detail": "2 vs 2"
+  },
+  {
+   "check": "web_rib count per flange/web = verified rib_seg4 (same depth 1200)",
+   "ok": true,
+   "detail": "4 vs 4"
+  },
+  {
+   "check": "crown depth = J-5 rib depth",
+   "ok": true,
+   "detail": "1200 vs 1200"
+  },
+  {
+   "check": "independent re-read: 1 RIB_SEG5 depth 1200, axis length 9620.4",
+   "ok": true,
+   "detail": "The side view is dimensioned 9620.4 (アーチリブ軸線上). The depth is shown as 1200 (3040=1200 in the side view and the 1200 dimension in section b-b)."
+  },
+  {
+   "check": "independent re-read: 2 top plate 1700x26 SM490YB",
+   "ok": true,
+   "detail": "The list reads 1-TOP PL 1700x26x9683 (SM490YB)."
+  },
+  {
+   "check": "independent re-read: 3 bottom plate 1574x26 SM490YB",
+   "ok": true,
+   "detail": "The list reads 1-BOTT PL 1574x26x9558 (SM490YB)."
+  },
+  {
+   "check": "independent re-read: 4 web plate 1343x23 SM490YB, 2 per section",
+   "ok": true,
+   "detail": "The list reads 2-WEB PL 1343x23x9676 (SM490YB)."
+  }
+ ],
+ "llm": {
+  "items": [
+   {
+    "item": "1 RIB_SEG5 depth 1200, axis length 9620.4",
+    "agree": true,
+    "note": "The side view is dimensioned 9620.4 (アーチリブ軸線上). The depth is shown as 1200 (3040=1200 in the side view and the 1200 dimension in section b-b)."
+   },
+   {
+    "item": "2 top plate 1700x26 SM490YB",
+    "agree": true,
+    "note": "The list reads 1-TOP PL 1700x26x9683 (SM490YB)."
+   },
+   {
+    "item": "3 bottom plate 1574x26 SM490YB",
+    "agree": true,
+    "note": "The list reads 1-BOTT PL 1574x26x9558 (SM490YB)."
+   },
+   {
+    "item": "4 web plate 1343x23 SM490YB, 2 per section",
+    "agree": true,
+    "note": "The list reads 2-WEB PL 1343x23x9676 (SM490YB)."
+   }
+  ],
+  "status": "done"
+ },
+ "spent_usd": {
+  "claude-code-cli": 0.0403
+ },
+ "claims": {
+  "task": "rib_seg5",
+  "sheets": [
+   "J-46 アーチリブ（その5）"
+  ],
+  "facts": [],
+  "sections": [
+   {
+    "name": "RIB_SEG5",
+    "sheet": "J-46",
+    "view": "D15~D18 section / web view (アーチリブ軸線上 9620.4)",
+    "depth_mm": 1200.0,
+    "depth_range_mm": [
+     1200.0,
+     1200.0
+    ],
+    "web_spacing_mm": 1600.0,
+    "axis_length_mm": 9620.4,
+    "plates": [
+     {
+      "role": "top",
+      "width_mm": 1700.0,
+      "thickness_mm": 26.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "bottom",
+      "width_mm": 1574.0,
+      "thickness_mm": 26.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web",
+      "width_mm": 1343.0,
+      "thickness_mm": 23.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "flange_rib",
+      "width_mm": 220.0,
+      "thickness_mm": 22.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web_rib",
+      "width_mm": 220.0,
+      "thickness_mm": 22.0,
+      "count": 4,
+      "material": "SM490YB"
+     }
+    ]
+   }
+  ],
+  "cables": [],
+  "cable_specs": [],
+  "sheet_index": [],
+  "lessons": [
+   "Segment 5 is sheet J-46 (アーチリブ（その5）, 縮尺 図示); the number is in the rightmost title block cell. It uses the same three stacked plan views as J-43 to J-45.",
+   "Segment 5 callouts: 1-TOP PL 1700x26x9683 and 2-RIB PL 220x22x9673 (top flange). 1-BOTT PL 1574x26x9558 with 2-RIB 220x22 of lengths 557, 1015, 3607 and 555 (bottom flange). 2-WEB PL 1343x23x9676 (web). All are SM490YB; the notes' default SM400A is not used.",
+   "Depth is from the D15~D18 section: overall 1250, web 1200, written 3@400=1200. The web is 1200 at both ends, so it does not taper. The 1343 web PL width is the curved width, not the depth.",
+   "The axis length is the dimension 9620.4 (アーチリブ軸線上) on the web view. The plate lengths 9683, 9676 and 9558.3 are not the axis length. It matches the 9620.4 arc on the 配置図.",
+   "Web ribs: the section shows 3@400=1200, which gives 4 horizontal rib rows per web (same as segment 4). The 4-RIB / 3-RIB prefixes in the web list count pieces per panel, so do not use them as the per-web count.",
+   "Flange ribs are 2 per flange (2-RIB PL callouts). The bottom flange rib callouts with a 4- prefix are piece counts along the length, not per-section counts.",
+   "When a prior check says the web_rib count must match a sibling segment with the same depth, derive it from the 3@400 spacing, not from the callout prefixes."
+  ],
+  "reader": "claude-code-cli actor"
+ }
+}

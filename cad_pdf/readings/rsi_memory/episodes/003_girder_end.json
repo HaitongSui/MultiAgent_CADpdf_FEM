@@ -1,0 +1,189 @@
+{
+ "task": "girder_end",
+ "time": "2026-10-19 03:20:33",
+ "page": 39,
+ "reader": "claude-code-cli actor",
+ "ok": true,
+ "checks": [
+  {
+   "check": "top, bottom and two webs reported",
+   "ok": true,
+   "detail": "2/1/2"
+  },
+  {
+   "check": "web spacing = main girder width (J-5/J-8)",
+   "ok": true,
+   "detail": "1600 vs 1600"
+  },
+  {
+   "check": "top flange covers the webs (outstand 0-200 mm)",
+   "ok": true,
+   "detail": "1700 vs 1600"
+  },
+  {
+   "check": "top thickness plausible",
+   "ok": true,
+   "detail": "30"
+  },
+  {
+   "check": "top thickness plausible",
+   "ok": true,
+   "detail": "16"
+  },
+  {
+   "check": "bottom thickness plausible",
+   "ok": true,
+   "detail": "32"
+  },
+  {
+   "check": "web thickness plausible",
+   "ok": true,
+   "detail": "18"
+  },
+  {
+   "check": "depth = flange + web + flange",
+   "ok": true,
+   "detail": "3038 vs 3038"
+  },
+  {
+   "check": "end block deeper than the midspan girder (J-5)",
+   "ok": true,
+   "detail": "3038 > 1950"
+  },
+  {
+   "check": "independent re-read: 1 GIRDER_END depth 3038, length 104100",
+   "ok": true,
+   "detail": "Section A-A and the elevation show 3038 depth. The 桁長 (girder length) dimension reads 104100."
+  },
+  {
+   "check": "independent re-read: 2 top plate 1700x30 SM490YB",
+   "ok": true,
+   "detail": "The sheet shows 1-FLG PL 1700x30x3626 and 1700x30x4226, both SM490YB."
+  },
+  {
+   "check": "independent re-read: 3 top plate 1700x16 SM490YA",
+   "ok": true,
+   "detail": "The sheet shows 1-FLG PL 1700x16x1588 (SM490YA)."
+  },
+  {
+   "check": "independent re-read: 4 bottom plate 1700x32 SM490YB",
+   "ok": true,
+   "detail": "The sheet shows 1-FLG PL 1700x32x4227 and 1700x32x4226, both SM490YB."
+  },
+  {
+   "check": "independent re-read: 5 web plate 2976x18 SM490YB, 2 per section",
+   "ok": true,
+   "detail": "The sheet shows 2-WEB PL 2976x18x4579 and 2976x18x4305, both SM490YB."
+  }
+ ],
+ "llm": {
+  "items": [
+   {
+    "item": "1 GIRDER_END depth 3038, length 104100",
+    "agree": true,
+    "note": "Section A-A and the elevation show 3038 depth. The 桁長 (girder length) dimension reads 104100."
+   },
+   {
+    "item": "2 top plate 1700x30 SM490YB",
+    "agree": true,
+    "note": "The sheet shows 1-FLG PL 1700x30x3626 and 1700x30x4226, both SM490YB."
+   },
+   {
+    "item": "3 top plate 1700x16 SM490YA",
+    "agree": true,
+    "note": "The sheet shows 1-FLG PL 1700x16x1588 (SM490YA)."
+   },
+   {
+    "item": "4 bottom plate 1700x32 SM490YB",
+    "agree": true,
+    "note": "The sheet shows 1-FLG PL 1700x32x4227 and 1700x32x4226, both SM490YB."
+   },
+   {
+    "item": "5 web plate 2976x18 SM490YB, 2 per section",
+    "agree": true,
+    "note": "The sheet shows 2-WEB PL 2976x18x4579 and 2976x18x4305, both SM490YB."
+   }
+  ],
+  "status": "done"
+ },
+ "spent_usd": {
+  "claude-code-cli": 0.4419
+ },
+ "claims": {
+  "task": "girder_end",
+  "sheets": [
+   "J-57 補剛桁(その1-1)"
+  ],
+  "facts": [],
+  "sections": [
+   {
+    "name": "GIRDER_END",
+    "sheet": "J-57",
+    "view": "補剛桁(その1-1) S=1:30, plan/elevation with A-A section",
+    "depth_mm": 3038.0,
+    "depth_range_mm": [
+     3038.0,
+     3038.0
+    ],
+    "web_spacing_mm": 1600.0,
+    "axis_length_mm": 104100.0,
+    "plates": [
+     {
+      "role": "top",
+      "width_mm": 1700.0,
+      "thickness_mm": 30.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "top",
+      "width_mm": 1700.0,
+      "thickness_mm": 16.0,
+      "count": 1,
+      "material": "SM490YA"
+     },
+     {
+      "role": "bottom",
+      "width_mm": 1700.0,
+      "thickness_mm": 32.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web",
+      "width_mm": 2976.0,
+      "thickness_mm": 18.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "flange_rib",
+      "width_mm": 230.0,
+      "thickness_mm": 25.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web_rib",
+      "width_mm": 190.0,
+      "thickness_mm": 19.0,
+      "count": 2,
+      "material": "SM400A"
+     }
+    ]
+   }
+  ],
+  "cables": [],
+  "cable_specs": [],
+  "sheet_index": [],
+  "lessons": [
+   "Title block: 設計名称 '新田豊島橋(仮称)実施設計', 図面名称 '補剛桁(その1-1)', 縮尺 '図示', 図面番号 'J-57' is the rightmost cell. The sheet title also reads S=1:30 near the top.",
+   "Box girder end block (A-A): flange width 1700 overall (1600 between webs plus 50 overhang each side). Depth 3038 = 32 bottom flange + 2976 web + 30 top flange (the 12 mm dimension is the deck/flange joint detail). Web spacing is 1600.",
+   "Top flange plates are 1700x30 (SM490YB) with a 1700x16x1588 (SM490YA) end piece. Bottom flange plates are 1700x32 (SM490YB). Each flange carries 2 longitudinal ribs of PL 230x25 (SM490YB), at 533/534/533 spacing across the 1600 width.",
+   "Webs are 2-WEB PL 2976x18 (SM490YB). The horizontal stiffeners (web ribs) are PL 190x19 or 195x19, and no material is stated for them, so the note 'unlabelled material = SM400A' applies.",
+   "Overall girder length is 104100 and span length 102700. The end block is a segment of about 4225 member length, and drawing lengths like 4579 and 4305 are web plate lengths per panel.",
+   "The sheet is a plan/elevation/detail composite. Read plate sizes from the callout text (N-PL WxTxL (material)), and take the section depth from the dimension string on A-A and the elevation."
+  ],
+  "reader": "claude-code-cli actor"
+ }
+}

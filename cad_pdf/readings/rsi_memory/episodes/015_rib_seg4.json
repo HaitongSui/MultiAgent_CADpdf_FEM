@@ -1,0 +1,87 @@
+{
+ "task": "rib_seg4",
+ "audit": true,
+ "ok": false,
+ "reader": "memory audit",
+ "page": null,
+ "checks": [
+  {
+   "check": "web_rib count per flange/web = verified rib_seg5 (same depth 1200)",
+   "ok": false,
+   "detail": "2 vs 4"
+  }
+ ],
+ "llm": {},
+ "spent_usd": {},
+ "claims": {
+  "task": "rib_seg4",
+  "sheets": [
+   "J-45 アーチリブ（その4）"
+  ],
+  "facts": [],
+  "sections": [
+   {
+    "name": "RIB_SEG4",
+    "sheet": "J-45",
+    "view": "D10~D14 section view (H2 web height 1200, H1 1250) and web plan view; segment JU3-JU4",
+    "depth_mm": 1200.0,
+    "depth_range_mm": [
+     1200.0,
+     1200.0
+    ],
+    "web_spacing_mm": 1600.0,
+    "axis_length_mm": 8190.0,
+    "plates": [
+     {
+      "role": "top",
+      "width_mm": 1700.0,
+      "thickness_mm": 28.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "bottom",
+      "width_mm": 1574.0,
+      "thickness_mm": 28.0,
+      "count": 1,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web",
+      "width_mm": 1330.0,
+      "thickness_mm": 23.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "flange_rib",
+      "width_mm": 220.0,
+      "thickness_mm": 22.0,
+      "count": 2,
+      "material": "SM490YB"
+     },
+     {
+      "role": "web_rib",
+      "width_mm": 220.0,
+      "thickness_mm": 22.0,
+      "count": 2,
+      "material": "SM490YB"
+     }
+    ]
+   }
+  ],
+  "cables": [],
+  "cable_specs": [],
+  "sheet_index": [],
+  "lessons": [
+   "Page 27 is drawing J-45 アーチリブ（その4）, 縮尺 図示, S=1:30; the number is the rightmost title block cell. Segment 4 runs JU3 to JU4.",
+   "Callouts: 1-TOP PL 1700x28x8254 and 2-RIB PL 220x22x8244 (top); 1-BOTT PL 1574x28x8126 with 2-RIB PL 220x22 of lengths 2548, 1214 and 2953 (bottom, ribs numbered 2-4); 2-WEB PL 1330x23x8247 plus 220x22 ribs of various lengths 386 to 1957 (web). All are SM490YB.",
+   "The axis length is the dimension labelled 8190 (アーチリブ軸線上) on the web view. It differs from the 配置図 arc 8003.2, which belongs to the previous segment, and from the plate lengths 8254, 8247 and 8126. Check the 配置図 segment labels against the JU numbers before using them.",
+   "The depth is constant in this segment. The D10~D14 section shows 1250 overall (H1) and 1200 web height (H2) with 3@400=1200 rib spacing, so there is no taper, unlike segments 2 and 3.",
+   "Web spacing is 1600 within a 1700 overall width (50 overhang each side). The bottom plate is 1574 wide because the webs sit 13 mm inside each edge. The web plate is 1330 wide because it is curved, so use the 1200 section depth.",
+   "Web rib counts in the list use prefixes such as 4-RIB or 2-RIB for the number of pieces. The web list has 13 numbered items and all are populated. The plates are 28 mm thick on the flanges and 23 mm on the web.",
+   "Segment thickness and material change from sheet to sheet (J-43 SM570TMC 38 mm, J-44 SM490YB 38 mm, J-45 SM490YB 28 mm), so read every sheet's callouts instead of carrying values over."
+  ],
+  "reader": "claude-code-cli actor"
+ }
+}

@@ -66,7 +66,7 @@ def test_tied_arch_behaviour(arch_run):
     bb = arch_run
     res = bb["bridge_results"]
     m = bb["frame"]
-    assert len([b for b in m.beams if b.section == "CABLE"]) == 36
+    assert len([b for b in m.beams if b.section.startswith("CABLE")]) == 36
     for case, s in res.items():
         assert s["equilibrium_error"] < 1e-9
         assert min(s["hanger_force_kN"].values()) > 0, case          # all hangers in tension

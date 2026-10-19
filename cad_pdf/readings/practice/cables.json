@@ -1,0 +1,151 @@
+{
+ "task": "cables",
+ "sheets": [
+  "J-81 ケーブル図"
+ ],
+ "facts": [],
+ "sections": [],
+ "cables": [
+  {
+   "number": 1,
+   "strands": 19,
+   "dead_tension_kN": 224.01,
+   "node_length_m": 4.65
+  },
+  {
+   "number": 2,
+   "strands": 55,
+   "dead_tension_kN": 245.96,
+   "node_length_m": 5.514
+  },
+  {
+   "number": 3,
+   "strands": 55,
+   "dead_tension_kN": 306.11,
+   "node_length_m": 6.064
+  },
+  {
+   "number": 4,
+   "strands": 73,
+   "dead_tension_kN": 563.94,
+   "node_length_m": 6.864
+  },
+  {
+   "number": 5,
+   "strands": 55,
+   "dead_tension_kN": 382.12,
+   "node_length_m": 7.14
+  },
+  {
+   "number": 6,
+   "strands": 73,
+   "dead_tension_kN": 576.39,
+   "node_length_m": 7.73
+  },
+  {
+   "number": 7,
+   "strands": 55,
+   "dead_tension_kN": 395.88,
+   "node_length_m": 7.894
+  },
+  {
+   "number": 8,
+   "strands": 73,
+   "dead_tension_kN": 476.31,
+   "node_length_m": 8.179
+  },
+  {
+   "number": 9,
+   "strands": 55,
+   "dead_tension_kN": 372.21,
+   "node_length_m": 8.221
+  },
+  {
+   "number": 10,
+   "strands": 55,
+   "dead_tension_kN": 364.47,
+   "node_length_m": 8.219
+  },
+  {
+   "number": 11,
+   "strands": 73,
+   "dead_tension_kN": 492.08,
+   "node_length_m": 8.179
+  },
+  {
+   "number": 12,
+   "strands": 55,
+   "dead_tension_kN": 386.75,
+   "node_length_m": 7.879
+  },
+  {
+   "number": 13,
+   "strands": 73,
+   "dead_tension_kN": 583.75,
+   "node_length_m": 7.713
+  },
+  {
+   "number": 14,
+   "strands": 55,
+   "dead_tension_kN": 367.55,
+   "node_length_m": 7.111
+  },
+  {
+   "number": 15,
+   "strands": 73,
+   "dead_tension_kN": 560.14,
+   "node_length_m": 6.833
+  },
+  {
+   "number": 16,
+   "strands": 55,
+   "dead_tension_kN": 291.8,
+   "node_length_m": 6.032
+  },
+  {
+   "number": 17,
+   "strands": 55,
+   "dead_tension_kN": 240.24,
+   "node_length_m": 5.485
+  },
+  {
+   "number": 18,
+   "strands": 19,
+   "dead_tension_kN": 221.51,
+   "node_length_m": 4.627
+  }
+ ],
+ "cable_specs": [
+  {
+   "name": "SPWC 73",
+   "strands": 73,
+   "area_mm2": 2810.0,
+   "E_kN_mm2": 196.0,
+   "breaking_kN": 4410.0,
+   "weight_kg_m": 24.1
+  },
+  {
+   "name": "SPWC 55",
+   "strands": 55,
+   "area_mm2": 2120.0,
+   "E_kN_mm2": 196.0,
+   "breaking_kN": 3320.0,
+   "weight_kg_m": 18.2
+  },
+  {
+   "name": "SPWC 19",
+   "strands": 19,
+   "area_mm2": 731.0,
+   "E_kN_mm2": 196.0,
+   "breaking_kN": 1150.0,
+   "weight_kg_m": 6.5
+  }
+ ],
+ "sheet_index": [],
+ "lessons": [
+  "J-81 cable numbers 1..18 run from A1 to A2 and correspond to anchors C6-L, C6-R, ..., C14-R.",
+  "J-81 node length Ls is about 876 mm shorter than the J-8 hanger length for every cable: J-8 lengths run to the girder work line below the girder-side node.",
+  "J-81 dead-load tensions are design values with cable length adjustment (PSあり)."
+ ],
+ "reader": "Claude (in-session reading of 280 dpi crops)"
+}

@@ -1,0 +1,44 @@
+{
+ "task": "xbeam",
+ "sheets": [
+  "J-74 中間横桁"
+ ],
+ "facts": [],
+ "sections": [
+  {
+   "name": "XBEAM",
+   "sheet": "J-74",
+   "view": "C1-C19 elevation and plate list",
+   "depth_mm": 1250.0,
+   "depth_range_mm": [
+    1400.0,
+    1100.0
+   ],
+   "web_spacing_mm": null,
+   "axis_length_mm": null,
+   "plates": [
+    {
+     "role": "web",
+     "width_mm": 1418.0,
+     "thickness_mm": 9.0,
+     "count": 1,
+     "material": "SM490YA"
+    },
+    {
+     "role": "bottom",
+     "width_mm": 290.0,
+     "thickness_mm": 19.0,
+     "count": 1,
+     "material": "SM490YB"
+    }
+   ]
+  }
+ ],
+ "cables": [],
+ "cable_specs": [],
+ "sheet_index": [],
+ "lessons": [
+  "Cross beams use the steel deck plate (t=12) as their top flange; their depth falls from about 1400 at the girders to about 1100 at the deck crown."
+ ],
+ "reader": "Claude (in-session reading of 280 dpi crops)"
+}

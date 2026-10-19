@@ -1,0 +1,66 @@
+{
+ "task": "rib_seg3",
+ "sheets": [
+  "J-44 アーチリブ（その3）"
+ ],
+ "facts": [],
+ "sections": [
+  {
+   "name": "RIB_SEG3",
+   "sheet": "J-44",
+   "view": "plate lists, H table (H2), section D-D",
+   "depth_mm": 1218.3,
+   "depth_range_mm": [
+    1236.6,
+    1200.0
+   ],
+   "web_spacing_mm": 1600.0,
+   "axis_length_mm": 8003.2,
+   "plates": [
+    {
+     "role": "top",
+     "width_mm": 1700.0,
+     "thickness_mm": 38.0,
+     "count": 1,
+     "material": "SM490YB"
+    },
+    {
+     "role": "bottom",
+     "width_mm": 1574.0,
+     "thickness_mm": 38.0,
+     "count": 1,
+     "material": "SM490YB"
+    },
+    {
+     "role": "web",
+     "width_mm": 1315.0,
+     "thickness_mm": 23.0,
+     "count": 2,
+     "material": "SM490YB"
+    },
+    {
+     "role": "flange_rib",
+     "width_mm": 220.0,
+     "thickness_mm": 22.0,
+     "count": 2,
+     "material": "SM490YB"
+    },
+    {
+     "role": "web_rib",
+     "width_mm": 220.0,
+     "thickness_mm": 22.0,
+     "count": 2,
+     "material": "SM490YB"
+    }
+   ]
+  }
+ ],
+ "cables": [],
+ "cable_specs": [],
+ "sheet_index": [],
+ "lessons": [
+  "Arch-rib WEB PL widths are cut widths including the curvature of the segment; take the section depth from the H2 column of the height table or from the section view.",
+  "Arch-rib bottom flange (1574) sits between the webs; the top flange (1700) overhangs 50 mm each side."
+ ],
+ "reader": "Claude (in-session reading of 280 dpi crops)"
+}
