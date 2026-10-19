@@ -1,0 +1,268 @@
+{
+ "bridge_name": "新田豊島橋（仮称）",
+ "structure_type": "鋼単純箱桁+アーチ複合橋",
+ "sheets": [
+  "J-5 構造一般図 (PDF（241101）-14)",
+  "J-8 基本寸法図 (PDF（241101）-17)"
+ ],
+ "bridge_length_mm": 105000.0,
+ "girder_length_mm": 104100.0,
+ "span_mm": 102700.0,
+ "arch_span_mm": 74400.0,
+ "arch_axis_length_mm": 76853.6,
+ "station_labels": [
+  "S1",
+  "C1",
+  "C2",
+  "C3",
+  "C4",
+  "C5",
+  "C6",
+  "C7",
+  "C8",
+  "C9",
+  "C10",
+  "C11",
+  "C12",
+  "C13",
+  "C14",
+  "C15",
+  "C16",
+  "C17",
+  "C18",
+  "C19",
+  "S2"
+ ],
+ "cross_beam_spacing_mm": [
+  4750.0,
+  4700.0,
+  4700.0,
+  4700.0,
+  4700.0,
+  4800.0,
+  5500.0,
+  5500.0,
+  6000.0,
+  6000.0,
+  6000.0,
+  6000.0,
+  5500.0,
+  5500.0,
+  4800.0,
+  4700.0,
+  4700.0,
+  4700.0,
+  4700.0,
+  4750.0
+ ],
+ "cable_anchor_chain_mm": [
+  13717.9,
+  3004.0,
+  2350.5,
+  3636.4,
+  1716.3,
+  4062.6,
+  1805.8,
+  4321.6,
+  1609.2,
+  4401.5,
+  1609.7,
+  4319.1,
+  1814.4,
+  4053.3,
+  1731.8,
+  3622.0,
+  2365.8,
+  2990.1,
+  13721.6
+ ],
+ "cable_anchor_order": [
+  "C6-L",
+  "C6-R",
+  "C7-L",
+  "C7-R",
+  "C8-L",
+  "C8-R",
+  "C9-L",
+  "C9-R",
+  "C10-L",
+  "C10-R",
+  "C11-L",
+  "C11-R",
+  "C12-L",
+  "C12-R",
+  "C13-L",
+  "C13-R",
+  "C14-L",
+  "C14-R"
+ ],
+ "cables": [
+  {
+   "girder_station": "C6",
+   "side": "L",
+   "length_mm": 5525.0
+  },
+  {
+   "girder_station": "C6",
+   "side": "R",
+   "length_mm": 6393.0
+  },
+  {
+   "girder_station": "C7",
+   "side": "L",
+   "length_mm": 6937.4
+  },
+  {
+   "girder_station": "C7",
+   "side": "R",
+   "length_mm": 7741.8
+  },
+  {
+   "girder_station": "C8",
+   "side": "L",
+   "length_mm": 8014.4
+  },
+  {
+   "girder_station": "C8",
+   "side": "R",
+   "length_mm": 8607.4
+  },
+  {
+   "girder_station": "C9",
+   "side": "L",
+   "length_mm": 8769.4
+  },
+  {
+   "girder_station": "C9",
+   "side": "R",
+   "length_mm": 9055.4
+  },
+  {
+   "girder_station": "C10",
+   "side": "L",
+   "length_mm": 9097.5
+  },
+  {
+   "girder_station": "C10",
+   "side": "R",
+   "length_mm": 9095.0
+  },
+  {
+   "girder_station": "C11",
+   "side": "L",
+   "length_mm": 9055.9
+  },
+  {
+   "girder_station": "C11",
+   "side": "R",
+   "length_mm": 8753.7
+  },
+  {
+   "girder_station": "C12",
+   "side": "L",
+   "length_mm": 8590.4
+  },
+  {
+   "girder_station": "C12",
+   "side": "R",
+   "length_mm": 7984.9
+  },
+  {
+   "girder_station": "C13",
+   "side": "L",
+   "length_mm": 7711.6
+  },
+  {
+   "girder_station": "C13",
+   "side": "R",
+   "length_mm": 6905.6
+  },
+  {
+   "girder_station": "C14",
+   "side": "L",
+   "length_mm": 6363.8
+  },
+  {
+   "girder_station": "C14",
+   "side": "R",
+   "length_mm": 5500.3
+  }
+ ],
+ "cable_angle_at_crown_deg": 76.0,
+ "deck_width_mm": 22000.0,
+ "girder_spacing_mm": 12100.0,
+ "girder_width_mm": 1600.0,
+ "girder_depth_mm": 1950.0,
+ "rib_depth_mm": 1200.0,
+ "rib_bottom_above_girder_top_mm": 8000.0,
+ "live_load": "B活荷重",
+ "bearings": "積層ゴム支承（RB）",
+ "deck": "鋼床版 t=12mm",
+ "steel_grades": [
+  "SM570",
+  "SM490Y",
+  "SM400",
+  "SS400"
+ ],
+ "pavement_thickness_mm": 80.0,
+ "carriageway_width_mm": 9000.0,
+ "sidewalk_width_mm": 3750.0,
+ "longitudinal_grades": "2.884% ↗ / 3.000% ↘",
+ "sources": [
+  {
+   "field": "bridge_name",
+   "sheet": "J-5 構造一般図 (PDF（241101）-14)",
+   "view": "表題欄",
+   "note": "設計名称 新田豊島橋（仮称）実施設計"
+  },
+  {
+   "field": "structure_type/live_load/bearings/deck/steel_grades/pavement/widths/grades",
+   "sheet": "J-5 構造一般図 (PDF（241101）-14)",
+   "view": "設計条件",
+   "note": null
+  },
+  {
+   "field": "bridge/girder/span/arch_span lengths",
+   "sheet": "J-5 構造一般図 (PDF（241101）-14)",
+   "view": "側面図 S=1:300",
+   "note": "same chain repeated on J-8 側面図 and both 平面図"
+  },
+  {
+   "field": "cross_beam_spacing_mm",
+   "sheet": "J-8 基本寸法図 (PDF（241101）-17)",
+   "view": "側面図 横桁間隔 row",
+   "note": "half chain 51350 = span/2, symmetric about C10"
+  },
+  {
+   "field": "arch_axis_length_mm / cable_anchor_chain_mm",
+   "sheet": "J-8 基本寸法図 (PDF（241101）-17)",
+   "view": "側面図 top dimension rows (ケーブル間隔, アーチリブ軸線上)",
+   "note": "chain sums exactly to 76853.6"
+  },
+  {
+   "field": "cables",
+   "sheet": "J-8 基本寸法図 (PDF（241101）-17)",
+   "view": "側面図 hanger lengths written along each hanger",
+   "note": null
+  },
+  {
+   "field": "cable_angle_at_crown_deg / rib_depth_mm / girder_depth_mm",
+   "sheet": "J-5 構造一般図 (PDF（241101）-14)",
+   "view": "側面図 near C10 (76°, 1200, 1950)",
+   "note": null
+  },
+  {
+   "field": "girder_spacing/girder_width/rib_bottom_above_girder_top",
+   "sheet": "J-8 基本寸法図 (PDF（241101）-17)",
+   "view": "断面図 (12100, 1600, 8000) and J-5 上部工断面図",
+   "note": null
+  }
+ ],
+ "uncertain": [
+  "The 8000 dimension is read as rib bottom flange above girder top at the crown; on J-8 断面図 its upper end could also be the rib axis. The geometry agent fits the arch to the hanger lengths and reports the difference.",
+  "Hanger lengths are taken as work-point lengths (girder anchor to rib anchor); the anchor points themselves are not dimensioned on J-5/J-8.",
+  "Rib width and all plate thicknesses are not dimensioned on J-5/J-8 (they are on the arch-rib and girder detail sheets 21-39); the model uses assumed values.",
+  "Cable section, cross-beam section and lateral bracing (JU1-JU8 marks) are not dimensioned on these sheets."
+ ],
+ "reader": "Claude (in-session reading of rendered sheet images, 280 dpi crops)"
+}

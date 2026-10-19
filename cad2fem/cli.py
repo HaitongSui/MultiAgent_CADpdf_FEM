@@ -48,6 +48,41 @@ def bridge_main(argv: list[str]) -> int:
     return _summary(bb)
 
 
+def arch_main(argv: list[str]) -> int:
+    from .bridge import ArchConfig, run_arch
+    from .bridge.writers import WRITERS as BRIDGE_WRITERS
+
+    ap = argparse.ArgumentParser(prog="cad2fem arch",
+                                 description="Scanned arch-bridge general drawings -> global 3D model "
+                                             "(sheets are read with Claude's vision)")
+    ap.add_argument("pdfs", nargs="*", help="sheet PDFs to read (e.g. the 一般図 and 基本寸法図)")
+    ap.add_argument("--reading", help="saved reading JSON (skips the vision call)")
+    ap.add_argument("--save-reading", help="write the reading used to this JSON file")
+    ap.add_argument("-o", "--out", default="out_arch")
+    ap.add_argument("--formats", default=",".join(BRIDGE_WRITERS))
+    ap.add_argument("--model", default="claude-opus-5-5", help="vision model")
+    ap.add_argument("--no-verify", action="store_true")
+    ap.add_argument("--no-plot", action="store_true")
+    ap.add_argument("-v", "--verbose", action="store_true")
+    a = ap.parse_args(argv)
+    if not a.pdfs and not a.reading:
+        ap.error("give sheet PDFs to read, or --reading")
+    _logging(a.verbose)
+    cfg = ArchConfig(formats=tuple(f.strip() for f in a.formats.split(",") if f.strip()),
+                     reading_file=a.reading, vision_model=a.model, verify=not a.no_verify,
+                     plot=not a.no_plot)
+    try:
+        bb = run_arch(a.pdfs, a.out, cfg)
+    except PipelineError as exc:
+        print(f"\nFAILED: {exc}", file=sys.stderr)
+        return 2
+    if a.save_reading and bb.has("arch_reading"):
+        from pathlib import Path
+        Path(a.save_reading).write_text(bb["arch_reading"].model_dump_json(indent=1), encoding="utf-8")
+        print(f"reading saved to {a.save_reading}")
+    return _summary(bb)
+
+
 def _summary(bb) -> int:
     print("\nOutputs:")
     for k, v in (bb.get("outputs") or {}).items():
@@ -64,8 +99,11 @@ def main(argv: list[str] | None = None) -> int:
     argv = sys.argv[1:] if argv is None else argv
     if argv and argv[0] == "bridge":
         return bridge_main(argv[1:])
+    if argv and argv[0] == "arch":
+        return arch_main(argv[1:])
     ap = argparse.ArgumentParser(prog="cad2fem",
-                                 epilog="Whole-bridge models: cad2fem bridge <pdfs...> -h",
+                                 epilog="Whole-bridge models: cad2fem bridge <pdfs...> -h | "
+                                        "scanned arch bridges: cad2fem arch <pdfs...> -h",
                                  description="Multi-agent CAD-PDF -> FEM input file generator")
     ap.add_argument("pdf", help="vector CAD drawing (PDF)")
     ap.add_argument("-o", "--out", default="out", help="output directory")
